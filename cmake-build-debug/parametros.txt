@@ -1,0 +1,5 @@
+conjuntoDatos=ch130.tsp
+tamPoblacion=50
+porcentajeInicializacion=80
+numEvaluaciones=50000
+kBest=3

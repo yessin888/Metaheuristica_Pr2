@@ -1,0 +1,9 @@
+# ninja log v5
+6	3570	7205638543264743	CMakeFiles/Pr2Meta.dir/main.cpp.obj	53420dafc39dba1
+31	4197	7205638549185391	CMakeFiles/Pr2Meta.dir/Poblacion.cpp.obj	e666dc786579cc52
+3571	6221	7205638569768051	CMakeFiles/Pr2Meta.dir/FileLoader.cpp.obj	659815854e05eeea
+3	702	7209035849094163	build.ninja	a21af45669cd7d97
+6221	6872	7205638576216412	Pr2Meta.exe	f56cdd1e01c42b6b
+4152	5141	7205563360699713	CMakeFiles/Pr2Meta.dir/Evolutivo.cpp.obj	5e7eb2c417b446d8
+19	3237	7205638539674701	CMakeFiles/Pr2Meta.dir/Individuo.cpp.obj	3454c8a97c371f91
+3238	5854	7205638566094782	CMakeFiles/Pr2Meta.dir/EvolutivoGeneracional.cpp.obj	d34bb85ac8f2367a
