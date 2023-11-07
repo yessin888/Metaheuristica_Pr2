@@ -8,6 +8,7 @@
 
 #include <vector>
 
+
 class Individuo {
 private:
     std::vector<int> vIndividuo;

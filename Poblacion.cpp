@@ -5,6 +5,7 @@
 #include <set>
 #include "Poblacion.h"
 #include "FileLoader.h"
+#include "CompareGreedy.h"
 
 Poblacion::Poblacion() {
     inicializarPoblacion();
@@ -70,6 +71,37 @@ void Poblacion::generaInidividuoAleatorio(std::vector<int> &v) {
 }
 
 void Poblacion::generaInidividuoGreedy(std::vector<int> &v) {
+
+    FileLoader* loader = FileLoader::GetInstancia();
+    int numero = ( rand() % (loader->getTamDatos()) ); //genero la primera ciudad de manera aleatoria
+    v.push_back(numero); // la meto en la posición 0
+
+    while (v.size() < loader->getTamDatos()) {
+
+        // Usar un min-heap para mantener un seguimiento de los n valores más pequeños
+        std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, CompareGreedy> distanciasHeap;
+
+        for (int i = 0; i <
+                        loader->getDistancias()[numero].size(); i++) { // compruebo las distancias desde la ciudad actual a las otras
+            distanciasHeap.push({i,
+                                 loader->getDistancias()[numero][i]}); // guardo en el heap la ciudad destino y la distancia de la ciudad origen a la de destino
+        }
+
+        int randomGreedy = (rand() %
+                            (loader->getTamGreedyAleatorio())); // me quedo con el n mejor del rango del greedy aleatorio, basicamente halo la aleatorización sobre el greedy
+
+        for (int i = 0; i < distanciasHeap.size(); ++i) {
+            if (i == randomGreedy) { // me quedo con la ciudad pertinente
+                numero = distanciasHeap.top().first;
+                distanciasHeap.pop();
+                break;
+            }
+            distanciasHeap.pop();
+        }
+        v.push_back(numero); // inserto la ciudad al vector solución
+        distanciasHeap = std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, CompareGreedy>(); // vuelvo a inicializar el heap, basicamente vacio su contenido
+
+    }
 
 }
 

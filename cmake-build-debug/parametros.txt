@@ -3,3 +3,4 @@ tamPoblacion=50
 porcentajeInicializacion=80
 numEvaluaciones=50000
 kBest=3
+tamGreedyAleatorio=5

@@ -25,6 +25,7 @@ private:
     int numEvaluaciones;
     int kBest; // numero para torneo de selección
     int numeroDeElites;
+    int tamGreedyAleatorio;
 
 
 public:
@@ -57,6 +58,8 @@ public:
     int getKBest() const;
 
     int getNumElite() const;
+
+    int getTamGreedyAleatorio() const;
 
 };
 

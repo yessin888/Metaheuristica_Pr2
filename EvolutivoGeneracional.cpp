@@ -35,6 +35,8 @@ void EvolutivoGeneracional::executeEvolutivo() {
             individuosSeleccionados.push_back(poblacion->getIndividuos()[torneoWinner]); // almaceno los individuos seleccionados
         }
 
+
+
         //todo remplazamiento a lo mejor tiene que ser como operador= en composición o algo asi con la memoria
 
         endTime = std::chrono::high_resolution_clock::now();
@@ -76,10 +78,27 @@ int EvolutivoGeneracional::torneo() {
 
 }
 
+void EvolutivoGeneracional::cruce(Poblacion &poblacion) {
+
+    //todo lo de 70%
+    /*
+    hijo=padre1;
+    cruceOX2(padre1,padre2,hijo);
+    hijo2=padre2;
+    cruceOX2(padre2,padre1,hijo2);
+
+    a lo mejor el corte del mOc debe ser igual para los dos hijos
+
+    hijo=padre1;
+    cruceMOC(padre1,padre2,hijo);
+    hijo2=padre2;
+    cruceMOC(padre2,padre1,hijo2);
+*/
+    
 /*
  * Genera un hijo a partir del padre1 y las posiciones seleccionadas en el padre2
  * @pre hijo inicializado como padre1
- * 
+ *
  */
 
 void EvolutivoGeneracional::cruceOX2(Individuo *padre1, Individuo *padre2, Individuo *hijo) {
@@ -98,6 +117,37 @@ void EvolutivoGeneracional::cruceOX2(Individuo *padre1, Individuo *padre2, Indiv
                 centinela++; // actualizo para indicar que ahora en vez de sustituir el elemento que aparece por 'centinela' vez en el padre, sea ahora el que aparece por 'centinela+1' vez
             }
             if(centinela == elementosSeleccionados.size()) { // si se han sustituido ya todos los elementos de 'elementosSeleccionados' acabo
+                fin = false;
+                break;
+            }
+        }
+        i++;
+
+    }
+
+}
+
+/*
+ * @pre: el hijo debe ser inicializado como el padre1
+ *
+ * */
+
+void EvolutivoGeneracional::cruceMOC(Individuo *padre1, Individuo *padre2, Individuo *hijo) {
+
+    int centinela = 0;
+    std::vector<int> parteDerechaPadre2;
+    int i = 0;
+    bool fin = true;
+    //TODO selecciono posiciones random de padre2 e inserto en 'parteDerechaPadre2' padre2[i]
+
+    while( i < hijo->getVIndividuo().size() && fin ) {
+
+        for(int j = 0; j < parteDerechaPadre2.size(); i++) { // recorro los elementos seleccionados
+            if(parteDerechaPadre2[j] == hijo->getVIndividuo()[i] ) { // compruebo si el elemento del hijo pertenece a la parte derecha del padre2
+                hijo->getVIndividuo()[i] = parteDerechaPadre2[centinela]; // en caso de ser así sustituyo dicho elemento por su correspondiente
+                centinela++; // actualizo para indicar que ahora en vez de sustituir el elemento que aparece por 'centinela' vez en la derecha del padre2, sea ahora el que aparece por 'centinela+1' vez
+            }
+            if(centinela == parteDerechaPadre2.size()) { // si se han sustituido ya todos los elementos de 'parteDerechaPadre2' acabo
                 fin = false;
                 break;
             }

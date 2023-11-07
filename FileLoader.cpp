@@ -48,6 +48,9 @@ FileLoader::FileLoader(const std::string& ruta):ruta(ruta.substr(0, ruta.find('.
             if(parametro == "numDeElites") {
                 numeroDeElites = std::stoi(valor);
             }
+            if(parametro == "tamGreedyAleatorio") {
+                tamGreedyAleatorio = std::stoi(valor);
+            }
 
         }
 
@@ -157,6 +160,10 @@ int FileLoader::getKBest() const {
 
 int FileLoader::getNumElite() const {
     return numeroDeElites;
+}
+
+int FileLoader::getTamGreedyAleatorio() const {
+    return tamGreedyAleatorio;
 }
 
 

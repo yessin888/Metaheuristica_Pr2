@@ -14,6 +14,8 @@ private:
     int torneo();
     void seleccion(std::vector<Individuo*> &nuevaPoblacion);
     void cruceOX2(Individuo* padre1, Individuo* padre2, Individuo* hijo);
+    void cruceMOC(Individuo* padre1, Individuo* padre2, Individuo* hijo);
+    void cruce(Poblacion& poblacion);
 
 public:
     EvolutivoGeneracional();

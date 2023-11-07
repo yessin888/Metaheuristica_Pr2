@@ -6,6 +6,7 @@
 #define PR2META_POBLACION_H
 
 #include "Individuo.h"
+#include <queue>
 
 class Poblacion {
 private:
