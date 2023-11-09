@@ -79,12 +79,6 @@ build CMakeFiles/Pr2Meta.dir/EvolutivoGeneracional.cpp.obj: CXX_COMPILER__Pr2Met
   OBJECT_DIR = CMakeFiles\Pr2Meta.dir
   OBJECT_FILE_DIR = CMakeFiles\Pr2Meta.dir
 
-build CMakeFiles/Pr2Meta.dir/CompareGreedy.cpp.obj: CXX_COMPILER__Pr2Meta_unscanned_Debug C$:/Users/yessi/Documents/Pr2Meta/CompareGreedy.cpp || cmake_object_order_depends_target_Pr2Meta
-  DEP_FILE = CMakeFiles\Pr2Meta.dir\CompareGreedy.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\Pr2Meta.dir
-  OBJECT_FILE_DIR = CMakeFiles\Pr2Meta.dir
-
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Pr2Meta
@@ -93,7 +87,7 @@ build CMakeFiles/Pr2Meta.dir/CompareGreedy.cpp.obj: CXX_COMPILER__Pr2Meta_unscan
 #############################################
 # Link the executable Pr2Meta.exe
 
-build Pr2Meta.exe: CXX_EXECUTABLE_LINKER__Pr2Meta_Debug CMakeFiles/Pr2Meta.dir/main.cpp.obj CMakeFiles/Pr2Meta.dir/FileLoader.cpp.obj CMakeFiles/Pr2Meta.dir/Poblacion.cpp.obj CMakeFiles/Pr2Meta.dir/Individuo.cpp.obj CMakeFiles/Pr2Meta.dir/EvolutivoGeneracional.cpp.obj CMakeFiles/Pr2Meta.dir/CompareGreedy.cpp.obj
+build Pr2Meta.exe: CXX_EXECUTABLE_LINKER__Pr2Meta_Debug CMakeFiles/Pr2Meta.dir/main.cpp.obj CMakeFiles/Pr2Meta.dir/FileLoader.cpp.obj CMakeFiles/Pr2Meta.dir/Poblacion.cpp.obj CMakeFiles/Pr2Meta.dir/Individuo.cpp.obj CMakeFiles/Pr2Meta.dir/EvolutivoGeneracional.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Pr2Meta.dir

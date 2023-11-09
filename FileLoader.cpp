@@ -51,6 +51,15 @@ FileLoader::FileLoader(const std::string& ruta):ruta(ruta.substr(0, ruta.find('.
             if(parametro == "tamGreedyAleatorio") {
                 tamGreedyAleatorio = std::stoi(valor);
             }
+            if(parametro == "tipoCruce") {
+                tipoCruce = valor;
+            }
+            if(parametro == "probabilidadCruce") {
+                probabilidadCruce = std::stoi(valor);
+            }
+            if(parametro == "probabilidadMutacion") {
+                probabilidadMutacion = std::stoi(valor);
+            }
 
         }
 
@@ -164,6 +173,18 @@ int FileLoader::getNumElite() const {
 
 int FileLoader::getTamGreedyAleatorio() const {
     return tamGreedyAleatorio;
+}
+
+int FileLoader::getProbabilidadCruce() const {
+    return probabilidadCruce;
+}
+
+std::string FileLoader::getTipoCruce() const {
+    return tipoCruce;
+}
+
+int FileLoader::getProbabilidadMutacion() const {
+    return probabilidadMutacion;
 }
 
 

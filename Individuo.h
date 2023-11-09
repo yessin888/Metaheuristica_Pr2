@@ -13,19 +13,26 @@ class Individuo {
 private:
     std::vector<int> vIndividuo;
     bool evaluado;
-    int costeAsociado;
-    int calcularCosteAsociado();
+    double costeAsociado;
+    double calcularCosteAsociado();
 public:
     Individuo(std::vector<int> &vIndividuo);
+
+    Individuo(const Individuo& copia);
+
     ~Individuo();
+
+    bool operator<(const Individuo& otro);
 
     std::vector<int> &getVIndividuo();
 
     bool isEvaluado() const;
 
-    int getCosteAsociado() const;
+    double getCosteAsociado() const;
 
     void setVIndividuo(const std::vector<int> &vIndividuo);
+
+    void setEvaluado(bool valor);
 };
 
 

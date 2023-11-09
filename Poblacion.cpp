@@ -3,9 +3,9 @@
 //
 
 #include <set>
+#include <algorithm>
 #include "Poblacion.h"
 #include "FileLoader.h"
-#include "CompareGreedy.h"
 
 Poblacion::Poblacion() {
     inicializarPoblacion();
@@ -34,8 +34,6 @@ void Poblacion::inicializarPoblacion() {
         generaInidividuoGreedy(individuoAleatorio);
         this->individuos.push_back(new Individuo(individuoAleatorio)); // creo un individuo aleatorio y lo inserto al vector de individuos
     }
-
-    //todo calcular elite y guardarlos por copia
 
 
 }
@@ -73,34 +71,65 @@ void Poblacion::generaInidividuoAleatorio(std::vector<int> &v) {
 void Poblacion::generaInidividuoGreedy(std::vector<int> &v) {
 
     FileLoader* loader = FileLoader::GetInstancia();
-    int numero = ( rand() % (loader->getTamDatos()) ); //genero la primera ciudad de manera aleatoria
-    v.push_back(numero); // la meto en la posición 0
+    std::vector<bool> marcajeCiudades(loader->getTamDatos());
+
+    for (int i = 0; i < loader->getTamDatos(); i++) {
+        marcajeCiudades.push_back(false);
+    }
+
+    int centinela = 0;
+    int ciudadActual = (rand() % (loader->getTamDatos()) ); //genero la primera ciudad de manera aleatoria
+    v.push_back(ciudadActual); // la meto en la posición 0
+    marcajeCiudades[ciudadActual] = true;
 
     while (v.size() < loader->getTamDatos()) {
 
-        // Usar un min-heap para mantener un seguimiento de los n valores más pequeños
-        std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, CompareGreedy> distanciasHeap;
+        std::vector<std::pair<double, int>> ciudadesContiguas;
 
-        for (int i = 0; i <
-                        loader->getDistancias()[numero].size(); i++) { // compruebo las distancias desde la ciudad actual a las otras
-            distanciasHeap.push({i,
-                                 loader->getDistancias()[numero][i]}); // guardo en el heap la ciudad destino y la distancia de la ciudad origen a la de destino
+        for (int i = 0; i < loader->getDistancias()[ciudadActual].size(); i++) { // compruebo las distancias desde la ciudad actual a las otras
+            ciudadesContiguas.push_back({loader->getDistancias()[ciudadActual][i], i}); // guardo en el heap la ciudad destino y la distancia de la ciudad origen a la de destino
         }
+        std::sort(ciudadesContiguas.begin(),ciudadesContiguas.end()); // ordeno las ciudades de manor a mayor distancia
 
-        int randomGreedy = (rand() %
-                            (loader->getTamGreedyAleatorio())); // me quedo con el n mejor del rango del greedy aleatorio, basicamente halo la aleatorización sobre el greedy
+        do{
 
-        for (int i = 0; i < distanciasHeap.size(); ++i) {
-            if (i == randomGreedy) { // me quedo con la ciudad pertinente
-                numero = distanciasHeap.top().first;
-                distanciasHeap.pop();
-                break;
+            int randomGreedy = (rand() % (loader->getTamGreedyAleatorio())); // me quedo con el n mejor del rango del greedy aleatorio, basicamente halo la aleatorización sobre el greedy
+            int ciudadElegida = ciudadesContiguas[randomGreedy].second; // la 'randomGreedy' ciudad más cercana
+            if(  !marcajeCiudades[ciudadElegida] ) { // compruebo que esa ciudad no esté ya seleccionada
+                ciudadActual = ciudadesContiguas[randomGreedy].second;
+                v.push_back(ciudadActual); // inserto la ciudad al vector solución
+                marcajeCiudades[ciudadElegida] = true;
+                centinela = -1;
+            }else{
+                centinela++;
             }
-            distanciasHeap.pop();
-        }
-        v.push_back(numero); // inserto la ciudad al vector solución
-        distanciasHeap = std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, CompareGreedy>(); // vuelvo a inicializar el heap, basicamente vacio su contenido
 
+        }while( centinela != -1 && centinela < (loader->getTamGreedyAleatorio()*5) ) ; // genero un número 'n' de manera aleatoria, si la 'n' ciudad más cercana está ya elegida vuelvo a generar otro 'n',
+                                                                                        // el bucle se repite hasta que encuentre una ciudad sin seleccionar o hasta que de un número de vueltas determinado.
+        //todo condición para dejar de probar los random, considerar otros valores
+
+        if (centinela != -1) { // si no he podido encontrar una ciudad no seleccionada previamente en el do-while, meto la primera ciudad sin seleccionar que encuentre
+            for (int i = 0; i < marcajeCiudades.size(); i++) {
+                if ( !marcajeCiudades[i] ) {
+                    ciudadActual = i;
+                    marcajeCiudades[i] = true;
+                    v.push_back(i);
+                }
+            }
+        }
+
+        centinela = 0;
+
+    }
+
+}
+
+void Poblacion::calcularElite() {
+
+    FileLoader* loader = FileLoader::GetInstancia();
+    std::sort(individuos.begin(),individuos.end()); // ordeno de menor a mayor por costes
+    for (int i = 0; i < loader->getNumElite(); ++i) {
+        this->elite.push_back( new Individuo(*individuos[i]) ); // elijo tantos elementos como elites tenga el algoritmo
     }
 
 }
@@ -109,6 +138,4 @@ const std::vector<Individuo *> &Poblacion::getIndividuos() const {
     return individuos;
 }
 
-void Poblacion::calcularElite() {
 
-}

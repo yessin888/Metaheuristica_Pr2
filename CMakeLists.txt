@@ -15,5 +15,4 @@ add_executable(Pr2Meta main.cpp
         EvolutivoGeneracional.cpp
         EvolutivoGeneracional.h
         EvolutivoGeneracional.cpp
-        CompareGreedy.cpp
-        CompareGreedy.h)
+)

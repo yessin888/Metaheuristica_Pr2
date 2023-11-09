@@ -26,6 +26,9 @@ private:
     int kBest; // numero para torneo de selección
     int numeroDeElites;
     int tamGreedyAleatorio;
+    std::string tipoCruce;
+    int probabilidadCruce;
+    int probabilidadMutacion;
 
 
 public:
@@ -60,6 +63,12 @@ public:
     int getNumElite() const;
 
     int getTamGreedyAleatorio() const;
+
+    int getProbabilidadCruce() const;
+
+    std::string getTipoCruce() const;
+
+    int getProbabilidadMutacion() const;
 
 };
 

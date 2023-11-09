@@ -7,18 +7,34 @@
 
 Individuo::Individuo(std::vector<int> &vIndividuo):evaluado(true) {
 
+    //todo al evaluar los individuos inicialmente les pongo 'evaluado' a tru, si al mutar , combinar o lo que sea cambio el inidividuo le pongo 'evaluado' a false
+    //asi cuando tenga la nueva poblacion y tenga que evaluarla lo hago solo sobre los modificados
+
     this->vIndividuo = vIndividuo;
     costeAsociado = calcularCosteAsociado(); // inicializo el coste del individuo
 
 }
+
+Individuo::Individuo(const Individuo &copia) {
+
+    vIndividuo = copia.vIndividuo;
+    evaluado = copia.evaluado;
+    costeAsociado = copia.costeAsociado;
+
+}
+
+bool Individuo::operator<(const Individuo &otro) {
+    return costeAsociado < otro.costeAsociado;
+}
+
 Individuo::~Individuo() {
 
 }
 
-int Individuo::calcularCosteAsociado() {
+double Individuo::calcularCosteAsociado() {
 
     FileLoader* loader = FileLoader::GetInstancia();
-    int coste = 0;
+    double coste = 0;
 
     for (int i = 0; i < loader->getTamDatos() - 1; i++) {
         coste += loader->getDistancias()[vIndividuo[i]][vIndividuo[i+1]];
@@ -37,10 +53,14 @@ bool Individuo::isEvaluado() const {
     return evaluado;
 }
 
-int Individuo::getCosteAsociado() const {
+double Individuo::getCosteAsociado() const {
     return costeAsociado;
 }
 
 void Individuo::setVIndividuo(const std::vector<int> &vIndividuo) {
     Individuo::vIndividuo = vIndividuo;
+}
+
+void Individuo::setEvaluado(bool valor) {
+    evaluado = valor;
 }

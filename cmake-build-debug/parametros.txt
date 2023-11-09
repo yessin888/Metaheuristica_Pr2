@@ -1,6 +1,9 @@
-conjuntoDatos=ch130.tsp
+conjuntoDatos=pr144.tsp
 tamPoblacion=50
 porcentajeInicializacion=80
 numEvaluaciones=50000
 kBest=3
 tamGreedyAleatorio=5
+tipoCruce=OX2
+probabilidadCruce=70
+probabilidadMutacion=10
