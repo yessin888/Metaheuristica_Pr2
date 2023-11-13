@@ -34,7 +34,7 @@ public:
 
     void setVIndividuo(const std::vector<int> &vIndividuo);
 
-    void setCoste(double valor);
+    void setCoste();
 
     void setEvaluado(bool valor);
 };

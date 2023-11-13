@@ -23,6 +23,8 @@ public:
     void calcularElite();
     const std::vector<Individuo *> &getElite() const;
     static bool comparadorIndividuos(Individuo* uno, Individuo* otro);
+    void setIndividuos(const std::vector<Individuo *> &individuos);
+
 };
 
 

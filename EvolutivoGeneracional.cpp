@@ -28,6 +28,7 @@ void EvolutivoGeneracional::executeEvolutivo() {
     auto endTime = std::chrono::high_resolution_clock::now();   // inicialización tiempo fin
     auto elapsed_seconds = std::chrono::duration_cast<std::chrono::seconds>(endTime - startTime); //inicialización tiempo transcurrido
     std::vector<Individuo*> individuosSeleccionados;
+    std::vector<Individuo*> elites;
 
     while( numEvaluaciones < loader->getNumEvaluaciones() && elapsed_seconds.count() < 60 ) {
         //todo comprobar que no he metido la ciudad x en v[x], sobre todo en poblacion al generar aleatoriamente y greedy
@@ -36,20 +37,29 @@ void EvolutivoGeneracional::executeEvolutivo() {
             int torneoWinner = torneo(); // hago el torneo
             individuosSeleccionados.push_back(poblacion->getIndividuos()[torneoWinner]); // almaceno los individuos seleccionados
         }
+
+
+
         //CRUCE
         cruce(individuosSeleccionados);
         //MUTACIÓN
         mutacion(individuosSeleccionados);
         //REMPLAZAMIENTO
-        std::vector<Individuo*> elites;
-        if( !this->comprobarElitismo(individuosSeleccionados,elites) ) {
-            //std::sort(individuosSeleccionados.begin(),individuosSeleccionados.end(), Poblacion::comparadorIndividuos); // ordeno los individuos por coste asociado para así hacer el torneo con los peores valores
+        if( !this->comprobarElitismo(individuosSeleccionados,elites) && elites.size() != 0 ) { // compruebo si los elites se mantienen en la nueva población
+            // en 'elites' se insertan los élites que faltan en la población
+            int centinela = 0;
+            do{
+                int perdedor = torneoPerdedor(individuosSeleccionados); // esto hace el torneo y cambia los perdedores por elites
+                if (insertarElite(perdedor,individuosSeleccionados,centinela) ) {
+                    centinela++; // si se ha logrado insertar un élite actualizo el contador
+                }
+            } while ( centinela != poblacion->getElite().size() ); // voy haciendo torneos hasta insertar todos los élites
 
         }
 
-
-
-
+        poblacion->setIndividuos(individuosSeleccionados); // cambio los individuos de la población, calculo los costes de los individuos modificados y calculo los nuevos élites
+        individuosSeleccionados.clear(); // reinicio el vector
+        elites.clear(); // reinicio el vector
 
 
         //todo remplazamiento a lo mejor tiene que ser como operador= en composición o algo asi con la memoria
@@ -58,6 +68,13 @@ void EvolutivoGeneracional::executeEvolutivo() {
         elapsed_seconds = std::chrono::duration_cast<std::chrono::seconds>(endTime - startTime); // actualizo el número de segundos que han transcurrido desde el inicio
         numEvaluaciones++;
     }
+
+    std::cout << "costes de élites" << std::endl;
+
+    for (int i = 0; i < poblacion->getElite().size(); ++i) {
+        std::cout << poblacion->getElite()[i]->getCosteAsociado() << std::endl;
+    }
+
 
 
 
@@ -87,7 +104,6 @@ int EvolutivoGeneracional::torneo() {
         }
 
     }
-
     return mejorIndividuo; // devuelvo el ganador del torneo, el de mejor fiteness
 
 }
@@ -241,40 +257,45 @@ void EvolutivoGeneracional::mutacion(std::vector<Individuo *> &IndividuosAMutar)
 
 }
 
+/*
+ * Compruebo que la nueva población mantenga los elites de la anterior
+ * @return: booleano indicando si se mantienen los elites o no
+ * @post: en caso de no mantener los elites inserto en el parámetro vector 'elites' los individuos que falten, así
+ *  si la población tiene 2 élites y solo mantiene uno, en 'elites' meto el otro que falta
+ * @param individuosNuevos[IN]: vetor que representa la nueva población a evaluar
+ * @param elites[IN/OUT]: veector en el que almaceno los individuos élites que no se encuentran en la nueva población
+ */
+
 bool EvolutivoGeneracional::comprobarElitismo(std::vector<Individuo *> &individuosNuevos, std::vector<Individuo *> &elites) {
     int elementosElites = 0;
     for (int i = 0; i < poblacion->getElite().size(); i++) {
+        bool encontrado = false;
         for (int j = 0; j < individuosNuevos.size(); ++j) {
             if( poblacion->getElite()[i] == individuosNuevos[j] ) {
-                elementosElites++;
-                elites.push_back(poblacion->getElite()[i]);
+               encontrado = true;
+               elementosElites++;
             }
+        }
+        if( !encontrado ) {
+            elites.push_back(poblacion->getElite()[i]);
         }
     }
 
     return ( elementosElites == poblacion->getElite().size() ); // si el número de elites es igual al tamaño de elites de la población -> true
 }
 
-int EvolutivoGeneracional::torneoPerdedor(std::vector<Individuo*> &nuevaPoblacion, std::vector<Individuo*> &elites) {
-
-    //todo evitar susu¡tituir el elite que acabo de meter cuando vuelva a hacer el torneo para el siguiente elite
-    // todo para ello hacer el cambio de los elites aquí directamente
+int EvolutivoGeneracional::torneoPerdedor(std::vector<Individuo*> &nuevaPoblacion) {
 
     FileLoader *loader = FileLoader::GetInstancia();
     std::set<int> individuosSeleccionados;
-    std::set<int> indicesElites;
+    //std::set<int> indicesElites;
     double peorCoste = -INT_MAX;  // coste peeor individuo
     int peorIndividuo = 0; // peor individuo
 
-    for (int i = 0; i < elites.size(); ++i) {
-
-        while (individuosSeleccionados.size() < loader->getKWorst()) {
+        while ( individuosSeleccionados.size() < loader->getKWorst() ) {
 
             int numero = (rand() %(loader->getTamPoblacion())); // elijo un individuo de la población de manera aleatoria
-
-            if ( indicesElites.find(numero) != indicesElites.end() ) { // si no es un elite lo tomo para el torneo
-                individuosSeleccionados.insert(numero); // evito duplicar los individuos con el conjunto
-            }
+            individuosSeleccionados.insert(numero); // evito duplicar los individuos con el conjunto
 
         }
 
@@ -288,13 +309,21 @@ int EvolutivoGeneracional::torneoPerdedor(std::vector<Individuo*> &nuevaPoblacio
 
         }
 
-        nuevaPoblacion[peorIndividuo] = elites[i];
-        indicesElites.insert(peorIndividuo);
+
+    return peorIndividuo;
 
 
+}
+
+bool EvolutivoGeneracional::insertarElite(int perdedor, std::vector<Individuo *>& nuevoIndividuos, int eliteAInsertar) {
+
+    for (int i = 0; i < poblacion->getElite().size(); i++) {
+        if ( nuevoIndividuos[perdedor] == poblacion->getElite()[i]) { // evito insertar el nuevo élite sobre un élite insertado previamente
+            return false;
+        }
     }
-
-    return peorIndividuo; // devuelvo el ganador del torneo, el de mejor fiteness
-
+    // si no es una posición de un élite inserto el élite correspondiente
+    nuevoIndividuos[perdedor] = poblacion->getElite()[eliteAInsertar];
+    return true;
 }
 

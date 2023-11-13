@@ -74,7 +74,9 @@ void Poblacion::generaInidividuoGreedy(std::vector<int> &v) {
     std::vector<bool> marcajeCiudades(loader->getTamDatos());
 
     for (int i = 0; i < loader->getTamDatos(); i++) {
-        marcajeCiudades.push_back(false);
+        if(i > 142)
+            std::cout <<"";
+        marcajeCiudades[i] = false;
     }
 
     int centinela = 0;
@@ -92,11 +94,10 @@ void Poblacion::generaInidividuoGreedy(std::vector<int> &v) {
         std::sort(ciudadesContiguas.begin(),ciudadesContiguas.end()); // ordeno las ciudades de manor a mayor distancia
 
         do{
-
             int randomGreedy = (rand() % (loader->getTamGreedyAleatorio())); // me quedo con el n mejor del rango del greedy aleatorio, basicamente halo la aleatorización sobre el greedy
             int ciudadElegida = ciudadesContiguas[randomGreedy].second; // la 'randomGreedy' ciudad más cercana
             if(  !marcajeCiudades[ciudadElegida] ) { // compruebo que esa ciudad no esté ya seleccionada
-                ciudadActual = ciudadesContiguas[randomGreedy].second;
+                ciudadActual = ciudadElegida;
                 v.push_back(ciudadActual); // inserto la ciudad al vector solución
                 marcajeCiudades[ciudadElegida] = true;
                 centinela = -1;
@@ -106,7 +107,7 @@ void Poblacion::generaInidividuoGreedy(std::vector<int> &v) {
 
         }while( centinela != -1 && centinela < (loader->getTamGreedyAleatorio()*5) ) ; // genero un número 'n' de manera aleatoria, si la 'n' ciudad más cercana está ya elegida vuelvo a generar otro 'n',
                                                                                         // el bucle se repite hasta que encuentre una ciudad sin seleccionar o hasta que de un número de vueltas determinado.
-        //todo condición para dejar de probar los random, considerar otros valores
+        //todo condición para dejar de probar los random, considerar otros valores, ejecutar con diferentes valores y ver con cout cuando se rellene de esa forma pocas veces
 
         if (centinela != -1) { // si no he podido encontrar una ciudad no seleccionada previamente en el do-while, meto la primera ciudad sin seleccionar que encuentre
             for (int i = 0; i < marcajeCiudades.size(); i++) {
@@ -131,6 +132,7 @@ void Poblacion::calcularElite() {
     std::sort(individuos.begin(),individuos.end(), comparadorIndividuos); // ordeno de menor a mayor por costes
     for (int i = 0; i < loader->getNumElite(); i++) {
         this->elite[i] = ( new Individuo(*individuos[i]) ); // elijo tantos elementos como elites tenga el algoritmo
+        std::cout << "Elite -> " << elite[i]->getCosteAsociado() << std::endl;
     }
 
 }
@@ -146,6 +148,19 @@ bool Poblacion::comparadorIndividuos(Individuo *uno, Individuo *otro) {
 
 const std::vector<Individuo *> &Poblacion::getElite() const {
     return elite;
+}
+
+void Poblacion::setIndividuos(const std::vector<Individuo *> &individuos) {
+    this->individuos = individuos;
+
+    for (int i = 0; i < this->individuos.size(); i++) {
+        if( !this->individuos[i]->isEvaluado() ) { // si no está evaluado calculo su coste
+            this->individuos[i]->setCoste();
+        }
+    }
+
+    calcularElite(); // calculo los nuevos élites
+
 }
 
 

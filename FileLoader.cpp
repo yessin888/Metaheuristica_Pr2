@@ -60,6 +60,9 @@ FileLoader::FileLoader(const std::string& ruta):ruta(ruta.substr(0, ruta.find('.
             if(parametro == "probabilidadMutacion") {
                 probabilidadMutacion = std::stoi(valor);
             }
+            if(parametro == "kWorst") {
+                kWorst = std::stoi(valor);
+            }
 
         }
 
@@ -185,6 +188,10 @@ std::string FileLoader::getTipoCruce() const {
 
 int FileLoader::getProbabilidadMutacion() const {
     return probabilidadMutacion;
+}
+
+int FileLoader::getKWorst() const {
+    return kWorst;
 }
 
 

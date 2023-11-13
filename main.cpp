@@ -19,10 +19,13 @@ int main() {
 
 //    Poblacion* pob = new Poblacion();
   //  std::cout << "->>>> " << pob->getIndividuos()[1]->getCosteAsociado();
+    //std::srand(45318800);
+    try{
+      EvolutivoGeneracional* aas = new EvolutivoGeneracional();
+      aas->executeEvolutivo();
+  }catch(const std::exception& e) {
+      std::cout << e.what() << std::endl;
+  }
 
-  EvolutivoGeneracional* aas = new EvolutivoGeneracional();
-    aas->executeEvolutivo();
-
-    std::cout << "Hello, World!" << std::endl;
     return 0;
 }

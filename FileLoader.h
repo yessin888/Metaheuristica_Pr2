@@ -29,6 +29,7 @@ private:
     std::string tipoCruce;
     int probabilidadCruce;
     int probabilidadMutacion;
+    int kWorst;
 
 
 public:
@@ -69,6 +70,8 @@ public:
     std::string getTipoCruce() const;
 
     int getProbabilidadMutacion() const;
+
+    int getKWorst() const;
 
 };
 
