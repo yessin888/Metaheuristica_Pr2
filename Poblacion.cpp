@@ -127,9 +127,10 @@ void Poblacion::generaInidividuoGreedy(std::vector<int> &v) {
 void Poblacion::calcularElite() {
 
     FileLoader* loader = FileLoader::GetInstancia();
-    std::sort(individuos.begin(),individuos.end()); // ordeno de menor a mayor por costes
-    for (int i = 0; i < loader->getNumElite(); ++i) {
-        this->elite.push_back( new Individuo(*individuos[i]) ); // elijo tantos elementos como elites tenga el algoritmo
+    //ordenar(this->individuos);
+    std::sort(individuos.begin(),individuos.end(), comparadorIndividuos); // ordeno de menor a mayor por costes
+    for (int i = 0; i < loader->getNumElite(); i++) {
+        this->elite[i] = ( new Individuo(*individuos[i]) ); // elijo tantos elementos como elites tenga el algoritmo
     }
 
 }
@@ -137,5 +138,15 @@ void Poblacion::calcularElite() {
 const std::vector<Individuo *> &Poblacion::getIndividuos() const {
     return individuos;
 }
+
+bool Poblacion::comparadorIndividuos(Individuo *uno, Individuo *otro) {
+    if( uno->getCosteAsociado() < otro->getCosteAsociado() ) return true;
+    return false;
+}
+
+const std::vector<Individuo *> &Poblacion::getElite() const {
+    return elite;
+}
+
 
 

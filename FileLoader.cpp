@@ -39,7 +39,7 @@ FileLoader::FileLoader(const std::string& ruta):ruta(ruta.substr(0, ruta.find('.
             if(parametro == "tamPoblacion") {
                 tamPoblacion = std::stoi(valor);
             }
-            if(parametro == "numEvaluciones") {
+            if(parametro == "numEvaluaciones") {
                 numEvaluaciones = std::stoi(valor);
             }
             if(parametro == "kBest") {

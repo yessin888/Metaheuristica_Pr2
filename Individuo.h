@@ -22,7 +22,9 @@ public:
 
     ~Individuo();
 
-    bool operator<(const Individuo& otro);
+    bool operator<(const Individuo& otro) const;
+
+    bool operator==(const Individuo& otro) const;
 
     std::vector<int> &getVIndividuo();
 
@@ -31,6 +33,8 @@ public:
     double getCosteAsociado() const;
 
     void setVIndividuo(const std::vector<int> &vIndividuo);
+
+    void setCoste(double valor);
 
     void setEvaluado(bool valor);
 };

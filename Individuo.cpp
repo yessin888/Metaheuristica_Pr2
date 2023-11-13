@@ -23,9 +23,11 @@ Individuo::Individuo(const Individuo &copia) {
 
 }
 
-bool Individuo::operator<(const Individuo &otro) {
-    return costeAsociado < otro.costeAsociado;
+bool Individuo::operator<(const Individuo &otro) const {
+    return this->costeAsociado < otro.costeAsociado;
 }
+
+
 
 Individuo::~Individuo() {
 
@@ -63,4 +65,19 @@ void Individuo::setVIndividuo(const std::vector<int> &vIndividuo) {
 
 void Individuo::setEvaluado(bool valor) {
     evaluado = valor;
+}
+
+bool Individuo::operator==(const Individuo &otro) const {
+
+    if( vIndividuo.size() != otro.vIndividuo.size() ) {
+        return false;
+    }
+
+    for (int i = 0; i < this->vIndividuo.size(); ++i) {
+        if( vIndividuo[i] != otro.vIndividuo[i] )
+            return false;
+    }
+
+    return true;
+
 }

@@ -4,6 +4,7 @@
 
 #include <chrono>
 #include <set>
+#include <algorithm>
 #include "EvolutivoGeneracional.h"
 #include "FileLoader.h"
 
@@ -28,7 +29,7 @@ void EvolutivoGeneracional::executeEvolutivo() {
     auto elapsed_seconds = std::chrono::duration_cast<std::chrono::seconds>(endTime - startTime); //inicialización tiempo transcurrido
     std::vector<Individuo*> individuosSeleccionados;
 
-    while( numEvaluaciones < loader->getNumEvaluaciones() && elapsed_seconds.count() > 60 ) {
+    while( numEvaluaciones < loader->getNumEvaluaciones() && elapsed_seconds.count() < 60 ) {
         //todo comprobar que no he metido la ciudad x en v[x], sobre todo en poblacion al generar aleatoriamente y greedy
         //SELECCIÓN
         while(individuosSeleccionados.size() < loader->getTamPoblacion()) { // hago torneo hasta seleccionar todos los individuos
@@ -40,6 +41,12 @@ void EvolutivoGeneracional::executeEvolutivo() {
         //MUTACIÓN
         mutacion(individuosSeleccionados);
         //REMPLAZAMIENTO
+        std::vector<Individuo*> elites;
+        if( !this->comprobarElitismo(individuosSeleccionados,elites) ) {
+            //std::sort(individuosSeleccionados.begin(),individuosSeleccionados.end(), Poblacion::comparadorIndividuos); // ordeno los individuos por coste asociado para así hacer el torneo con los peores valores
+
+        }
+
 
 
 
@@ -61,7 +68,7 @@ int EvolutivoGeneracional::torneo() {
 
     FileLoader *loader = FileLoader::GetInstancia();
     std::set<int> individuosSeleccionados;
-    int mejorCoste = INT_MAX;  // coste mejor individuo
+    double mejorCoste = INT_MAX;  // coste mejor individuo
     int mejorIndividuo = 0; // mejor individuo
 
     while (individuosSeleccionados.size() < loader->getKBest()) {
@@ -92,7 +99,7 @@ void EvolutivoGeneracional::cruce(std::vector<Individuo*> &IndividuosACruzar) {
     Individuo* padre2 = nullptr;
     Individuo* hijo1 = nullptr;
     Individuo* hijo2 = nullptr;
-    for (int i = 0; i < IndividuosACruzar.size() - 1; i++) {
+    for (int i = 0; i < IndividuosACruzar.size() - 1; i+=2) {
 
         //todo considerar poblaciones de tamaño impar
         padre1 = IndividuosACruzar[i];
@@ -105,17 +112,17 @@ void EvolutivoGeneracional::cruce(std::vector<Individuo*> &IndividuosACruzar) {
             if( loader->getTipoCruce() == "OX2" ) {
                 cruceOX2(padre1,padre2,hijo1);
                 cruceOX2(padre2,padre1,hijo2);
-                padre1 = hijo1;
-                padre1->setEvaluado(false); // indico que el individuo se ha modificado y que por tanto es necesario racalcular el coste posteriormente
-                padre2 = hijo2;
-                padre2->setEvaluado(false); // indico que el individuo se ha modificado y que por tanto es necesario racalcular el coste posteriormente
+                IndividuosACruzar[i] = hijo1;
+                IndividuosACruzar[i]->setEvaluado(false); // indico que el individuo se ha modificado y que por tanto es necesario racalcular el coste posteriormente
+                IndividuosACruzar[i+1] = hijo2;
+                IndividuosACruzar[i+1]->setEvaluado(false); // indico que el individuo se ha modificado y que por tanto es necesario racalcular el coste posteriormente
             }else{
                 if( loader->getTipoCruce() == "MOC" ){
                     cruceMOC(padre1,padre2,hijo1,hijo2);
-                    padre1 = hijo1;
-                    padre1->setEvaluado(false); // indico que el individuo se ha modificado y que por tanto es necesario racalcular el coste posteriormente
-                    padre2 = hijo2;
-                    padre2->setEvaluado(false); // indico que el individuo se ha modificado y que por tanto es necesario racalcular el coste posteriormente
+                    IndividuosACruzar[i] = hijo1;
+                    IndividuosACruzar[i]->setEvaluado(false); // indico que el individuo se ha modificado y que por tanto es necesario racalcular el coste posteriormente
+                    IndividuosACruzar[i+1] = hijo2;
+                    IndividuosACruzar[i+1]->setEvaluado(false); // indico que el individuo se ha modificado y que por tanto es necesario racalcular el coste posteriormente
                 }else{
                     throw std::invalid_argument("El algoritmo de cruce especificado en el paramFile es incorrecto, recuerda que debe ser \"OX2\" o \"MOC\"");
                 }
@@ -149,7 +156,7 @@ void EvolutivoGeneracional::cruceOX2(Individuo *padre1, Individuo *padre2, Indiv
 
     while( i < hijo->getVIndividuo().size() && fin ) {
 
-        for( int j = 0; j < elementosSeleccionados.size(); i++) { // recorro los elementos seleccionados
+        for( int j = 0; j < elementosSeleccionados.size(); j++) { // recorro los elementos seleccionados
             if( elementosSeleccionados[j] == hijo->getVIndividuo()[i] ) { // compruebo si es uno de los elementos seleccionados de manera aleatoria
                 hijo->getVIndividuo()[i] = elementosSeleccionados[centinela]; // pongo en la respectiva posición del hijo el elemento correspondiente del segundo padre( el elemento pertenece a 'elementosSeleccionados')
                 centinela++; // actualizo para indicar que ahora en vez de sustituir el elemento que aparece por 'centinela' vez en el padre, sea ahora el que aparece por 'centinela+1' vez
@@ -233,3 +240,61 @@ void EvolutivoGeneracional::mutacion(std::vector<Individuo *> &IndividuosAMutar)
     }
 
 }
+
+bool EvolutivoGeneracional::comprobarElitismo(std::vector<Individuo *> &individuosNuevos, std::vector<Individuo *> &elites) {
+    int elementosElites = 0;
+    for (int i = 0; i < poblacion->getElite().size(); i++) {
+        for (int j = 0; j < individuosNuevos.size(); ++j) {
+            if( poblacion->getElite()[i] == individuosNuevos[j] ) {
+                elementosElites++;
+                elites.push_back(poblacion->getElite()[i]);
+            }
+        }
+    }
+
+    return ( elementosElites == poblacion->getElite().size() ); // si el número de elites es igual al tamaño de elites de la población -> true
+}
+
+int EvolutivoGeneracional::torneoPerdedor(std::vector<Individuo*> &nuevaPoblacion, std::vector<Individuo*> &elites) {
+
+    //todo evitar susu¡tituir el elite que acabo de meter cuando vuelva a hacer el torneo para el siguiente elite
+    // todo para ello hacer el cambio de los elites aquí directamente
+
+    FileLoader *loader = FileLoader::GetInstancia();
+    std::set<int> individuosSeleccionados;
+    std::set<int> indicesElites;
+    double peorCoste = -INT_MAX;  // coste peeor individuo
+    int peorIndividuo = 0; // peor individuo
+
+    for (int i = 0; i < elites.size(); ++i) {
+
+        while (individuosSeleccionados.size() < loader->getKWorst()) {
+
+            int numero = (rand() %(loader->getTamPoblacion())); // elijo un individuo de la población de manera aleatoria
+
+            if ( indicesElites.find(numero) != indicesElites.end() ) { // si no es un elite lo tomo para el torneo
+                individuosSeleccionados.insert(numero); // evito duplicar los individuos con el conjunto
+            }
+
+        }
+
+        for (std::set<int>::iterator it = individuosSeleccionados.begin(); it != individuosSeleccionados.end(); ++it) {
+
+            int i = *it; // índice individuo de la población
+            if (nuevaPoblacion[i]->getCosteAsociado() > peorCoste) { // me quedo con el individuo con peor fitness
+                peorCoste = nuevaPoblacion[i]->getCosteAsociado();
+                peorIndividuo = i;
+            }
+
+        }
+
+        nuevaPoblacion[peorIndividuo] = elites[i];
+        indicesElites.insert(peorIndividuo);
+
+
+    }
+
+    return peorIndividuo; // devuelvo el ganador del torneo, el de mejor fiteness
+
+}
+
