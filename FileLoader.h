@@ -31,6 +31,9 @@ private:
     int probabilidadMutacion;
     int kWorst;
 
+    std::string tipoSeleccion;
+    int tiempoParada;
+
 
 public:
     FileLoader(const std::string& ruta);
@@ -72,6 +75,14 @@ public:
     int getProbabilidadMutacion() const;
 
     int getKWorst() const;
+
+    std::string getTipoSeleccion() const;
+
+    int getProbabilidadTernaria() const;
+
+    int getTiempoParada() const;
+
+    std::string getConjuntoDatos() const;
 
 };
 

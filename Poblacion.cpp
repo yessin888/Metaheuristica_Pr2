@@ -45,21 +45,36 @@ Poblacion::~Poblacion() {
         individuo = nullptr;
     }
 
+    for (auto individuo : elite) {
+        delete individuo; // borro cada individuo creado
+        individuo = nullptr;
+    }
+
 }
 
 void Poblacion::generaInidividuoAleatorio(std::vector<int> &v) {
     FileLoader* loader = FileLoader::GetInstancia();
     std::set<int> conjuntoAux;
     bool success;
-
+    int limiteIntentos = 0;
     while (v.size() < loader->getTamDatos()) {
 
         int numero = ( rand() % (loader->getTamDatos()) ); // genero un número random entre 0-numeroDeCiudades
         if(numero != v.size()) { // evito meter la ciudad x en el índice x
-
+            if (limiteIntentos >= (loader->getTamDatos() / 4) ) { // para evitar que el número que falta tarde en salir mucho, pongo un límite a partir del cual se inserta el número manualmente
+                for (int i = 0; i < loader->getTamDatos(); i++) {
+                    if ( conjuntoAux.insert(i).second ) {
+                        v.push_back(i);
+                        limiteIntentos = 0;
+                    }
+                }
+            }
             success = conjuntoAux.insert(numero).second;
             if (success) { //uso el conjunto como filtro para evitar ducplicados
                 v.push_back(numero); // si no se ducplica lo meto al vector
+                limiteIntentos = 0;
+            } else{
+                limiteIntentos++;
             }
 
         }
@@ -74,8 +89,6 @@ void Poblacion::generaInidividuoGreedy(std::vector<int> &v) {
     std::vector<bool> marcajeCiudades(loader->getTamDatos());
 
     for (int i = 0; i < loader->getTamDatos(); i++) {
-        if(i > 142)
-            std::cout <<"";
         marcajeCiudades[i] = false;
     }
 
@@ -89,9 +102,9 @@ void Poblacion::generaInidividuoGreedy(std::vector<int> &v) {
         std::vector<std::pair<double, int>> ciudadesContiguas;
 
         for (int i = 0; i < loader->getDistancias()[ciudadActual].size(); i++) { // compruebo las distancias desde la ciudad actual a las otras
-            ciudadesContiguas.push_back({loader->getDistancias()[ciudadActual][i], i}); // guardo en el heap la ciudad destino y la distancia de la ciudad origen a la de destino
+            ciudadesContiguas.push_back({loader->getDistancias()[ciudadActual][i], i});
         }
-        std::sort(ciudadesContiguas.begin(),ciudadesContiguas.end()); // ordeno las ciudades de manor a mayor distancia
+        std::sort(ciudadesContiguas.begin(),ciudadesContiguas.end()); // ordeno las ciudades de menor a mayor distancia
 
         do{
             int randomGreedy = (rand() % (loader->getTamGreedyAleatorio())); // me quedo con el n mejor del rango del greedy aleatorio, basicamente halo la aleatorización sobre el greedy
@@ -129,15 +142,16 @@ void Poblacion::calcularElite() {
 
     FileLoader* loader = FileLoader::GetInstancia();
     //ordenar(this->individuos);
-    std::sort(individuos.begin(),individuos.end(), comparadorIndividuos); // ordeno de menor a mayor por costes
+    auto aux = individuos;
+    std::sort(aux.begin(),aux.end(), comparadorIndividuos); // ordeno de menor a mayor por costes
     for (int i = 0; i < loader->getNumElite(); i++) {
-        this->elite[i] = ( new Individuo(*individuos[i]) ); // elijo tantos elementos como elites tenga el algoritmo
+        this->elite[i] = ( new Individuo(*aux[i]) ); // elijo tantos elementos como elites tenga el algoritmo
         std::cout << "Elite -> " << elite[i]->getCosteAsociado() << std::endl;
     }
 
 }
 
-const std::vector<Individuo *> &Poblacion::getIndividuos() const {
+std::vector<Individuo *> &Poblacion::getIndividuos()  {
     return individuos;
 }
 

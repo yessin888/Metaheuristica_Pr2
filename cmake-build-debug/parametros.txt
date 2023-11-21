@@ -1,4 +1,4 @@
-conjuntoDatos=pr144.tsp
+conjuntoDatos=CH130.tsp
 tamPoblacion=50
 porcentajeInicializacion=80
 numEvaluaciones=50000
@@ -9,3 +9,5 @@ tipoCruce=OX2
 probabilidadCruce=70
 probabilidadMutacion=10
 kWorst=3
+tipoSeleccion=EDB
+tiempoParada=60

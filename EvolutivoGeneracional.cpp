@@ -9,6 +9,27 @@
 #include "FileLoader.h"
 
 EvolutivoGeneracional::EvolutivoGeneracional(): poblacion(new Poblacion()) {
+
+
+    FileLoader *loader = FileLoader::GetInstancia();
+
+    log.open("RESULTADOS/EvolutivoGeneracional" ); //abro fichero Log
+    log << "Evolutivo Generacional" << "\n" << "****Datos fichero parámetro**** " << std::endl;
+    log << "numParada: " << loader->getNumEvaluaciones() << "\n"
+        << "tiempoParada: " << loader->getTiempoParada() << "\n"
+        << "Tam Población: " << loader->getTamPoblacion() << "\n"
+        << "Tipo de Cruce: " << loader->getTipoCruce() << "\n"
+        << "KBest: " << loader->getKBest() << "\n"
+        << "KWorst: " << loader->getKWorst() << "\n"
+        << "Porcentaje de inicialización aleatoria: " << loader->getPorcentajeInicializacion() << "\n"
+        << "número de élites: " << loader->getNumElite() << "\n"
+        << "tam greedy aleatorizado: " << loader->getTamGreedyAleatorio() << "\n"
+        << "probabiliadad de mutación: " << loader->getProbabilidadMutacion() << "\n"
+        << "probabilidad de cruce: " << loader->getProbabilidadCruce() << "\n"
+        << "Conjunto de datos: " <<  loader->getConjuntoDatos() << std::endl;
+
+
+
     // gracias a los constructores y las relaciones entre clases, mediante este constructor consigo inicializar los individuos de la
     //  población, evaluarlos y quedarme con los élite
 
@@ -30,16 +51,13 @@ void EvolutivoGeneracional::executeEvolutivo() {
     std::vector<Individuo*> individuosSeleccionados;
     std::vector<Individuo*> elites;
 
-    while( numEvaluaciones < loader->getNumEvaluaciones() && elapsed_seconds.count() < 60 ) {
+    while( numEvaluaciones < loader->getNumEvaluaciones() && elapsed_seconds.count() < loader->getTiempoParada() ) {
         //todo comprobar que no he metido la ciudad x en v[x], sobre todo en poblacion al generar aleatoriamente y greedy
         //SELECCIÓN
         while(individuosSeleccionados.size() < loader->getTamPoblacion()) { // hago torneo hasta seleccionar todos los individuos
             int torneoWinner = torneo(); // hago el torneo
             individuosSeleccionados.push_back(poblacion->getIndividuos()[torneoWinner]); // almaceno los individuos seleccionados
         }
-
-
-
         //CRUCE
         cruce(individuosSeleccionados);
         //MUTACIÓN
@@ -70,6 +88,7 @@ void EvolutivoGeneracional::executeEvolutivo() {
     }
 
     std::cout << "costes de élites" << std::endl;
+    std::cout << "tiempo" << elapsed_seconds.count() << std::endl;
 
     for (int i = 0; i < poblacion->getElite().size(); ++i) {
         std::cout << poblacion->getElite()[i]->getCosteAsociado() << std::endl;
@@ -211,7 +230,7 @@ void EvolutivoGeneracional::cruceMOC(Individuo *padre1, Individuo *padre2, Indiv
 
     while( i < hijo1->getVIndividuo().size() && fin ) {
 
-        for(int j = 0; j < parteDerechaPadre2.size(); i++) { // recorro los elementos seleccionados
+        for(int j = 0; j < parteDerechaPadre2.size(); j++) { // recorro los elementos seleccionados
             if(parteDerechaPadre2[j] == hijo1->getVIndividuo()[i] ) { // compruebo si el elemento del hijo pertenece a la parte derecha del padre2
                 hijo1->getVIndividuo()[i] = parteDerechaPadre2[centinela]; // en caso de ser así sustituyo dicho elemento por su correspondiente
                 centinela++; // actualizo para indicar que ahora en vez de sustituir el elemento que aparece por 'centinela' vez en la derecha del padre2, sea ahora el que aparece por 'centinela+1' vez
@@ -222,7 +241,7 @@ void EvolutivoGeneracional::cruceMOC(Individuo *padre1, Individuo *padre2, Indiv
             }
         }
 
-        for(int j = 0; j < parteDerechaPadre1.size(); i++) { // recorro los elementos seleccionados
+        for(int j = 0; j < parteDerechaPadre1.size(); j++) { // recorro los elementos seleccionados
             if(parteDerechaPadre1[j] == hijo2->getVIndividuo()[i] ) { // compruebo si el elemento del hijo pertenece a la parte derecha del padre1
                 hijo2->getVIndividuo()[i] = parteDerechaPadre1[centinela2]; // en caso de ser así sustituyo dicho elemento por su correspondiente
                 centinela2++; // actualizo para indicar que ahora en vez de sustituir el elemento que aparece por 'centinela' vez en la derecha del padre1, sea ahora el que aparece por 'centinela+1' vez

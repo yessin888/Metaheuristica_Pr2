@@ -14,7 +14,6 @@ private:
     std::vector<int> vIndividuo;
     bool evaluado;
     double costeAsociado;
-    double calcularCosteAsociado();
 public:
     Individuo(std::vector<int> &vIndividuo);
 
@@ -37,6 +36,8 @@ public:
     void setCoste();
 
     void setEvaluado(bool valor);
+
+    double calcularCosteAsociado();
 };
 
 

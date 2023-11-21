@@ -1,0 +1,3 @@
+"C:\Program Files\JetBrains\CLion 2023.2.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f CMakeFiles\Pr2Meta.dir/objects.a
+C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\ar.exe qc CMakeFiles\Pr2Meta.dir/objects.a @CMakeFiles\Pr2Meta.dir\objects1.rsp
+C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE -g -Wl,--whole-archive CMakeFiles\Pr2Meta.dir/objects.a -Wl,--no-whole-archive -o Pr2Meta.exe -Wl,--out-implib,libPr2Meta.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Pr2Meta.dir\linkLibs.rsp

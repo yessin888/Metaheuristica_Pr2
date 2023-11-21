@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Pr2Meta::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Pr2Meta-Debug-9bed341a81770a25e824.json",
+					"jsonFile" : "target-Pr2Meta-Debug-f978c3253f970373430f.json",
 					"name" : "Pr2Meta",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/yessi/Documents/Pr2Meta/cmake-build-debug",
-		"source" : "C:/Users/yessi/Documents/Pr2Meta"
+		"build" : "C:/Users/Yessin/Documents/clases/metaPr1/cmake-build-debug",
+		"source" : "C:/Users/Yessin/Documents/clases/metaPr1"
 	},
 	"version" : 
 	{

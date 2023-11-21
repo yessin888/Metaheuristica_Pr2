@@ -6,6 +6,7 @@
 #define PR2META_EVOLUTIVOGENERACIONAL_H
 
 
+#include <fstream>
 #include "Poblacion.h"
 
 class EvolutivoGeneracional {
@@ -21,7 +22,7 @@ private:
     bool comprobarElitismo(std::vector<Individuo *> &individuosNuevos, std::vector<Individuo*> &elites);
     bool insertarElite(int perdedor, std::vector<Individuo *>& nuevosIndividuos, int eliteAInsertar);
 
-
+    std::ofstream log;
 
 public:
     EvolutivoGeneracional();

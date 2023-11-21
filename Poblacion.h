@@ -19,7 +19,7 @@ public:
     Poblacion();
     Poblacion(int size);
     ~Poblacion();
-    const std::vector<Individuo *> &getIndividuos() const;
+    std::vector<Individuo *> &getIndividuos() ;
     void calcularElite();
     const std::vector<Individuo *> &getElite() const;
     static bool comparadorIndividuos(Individuo* uno, Individuo* otro);

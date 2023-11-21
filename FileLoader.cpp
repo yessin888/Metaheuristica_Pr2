@@ -63,6 +63,12 @@ FileLoader::FileLoader(const std::string& ruta):ruta(ruta.substr(0, ruta.find('.
             if(parametro == "kWorst") {
                 kWorst = std::stoi(valor);
             }
+            if(parametro == "tipoSeleccion") {
+                tipoSeleccion = valor;
+            }
+            if(parametro == "tiempoParada") {
+                tiempoParada = std::stoi(valor);
+            }
 
         }
 
@@ -194,5 +200,14 @@ int FileLoader::getKWorst() const {
     return kWorst;
 }
 
+std::string FileLoader::getTipoSeleccion() const {
+    return tipoSeleccion;
+}
 
+int FileLoader::getTiempoParada() const {
+    return tiempoParada;
+}
 
+std::string FileLoader::getConjuntoDatos() const {
+    return conjuntoDatos;
+}

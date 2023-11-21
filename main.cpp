@@ -5,6 +5,7 @@
 #include "Individuo.h"
 #include "Poblacion.h"
 #include "EvolutivoGeneracional.h"
+#include "TSP.h"
 
 
 int main() {
@@ -19,10 +20,14 @@ int main() {
 
 //    Poblacion* pob = new Poblacion();
   //  std::cout << "->>>> " << pob->getIndividuos()[1]->getCosteAsociado();
-    //std::srand(45318800);
+    std::srand(26567904);
+
+
     try{
       EvolutivoGeneracional* aas = new EvolutivoGeneracional();
       aas->executeEvolutivo();
+      //TSP* tsp = new TSP();
+      //tsp->executeTSP();
   }catch(const std::exception& e) {
       std::cout << e.what() << std::endl;
   }
