@@ -12,10 +12,11 @@
 class EvolutivoGeneracional {
 private:
     Poblacion* poblacion;
-    bool primeraVez;
+    bool primeraVez; // atributo para la gestión del log
+    std::ofstream log;
+
     int torneo();
     int torneoPerdedor(std::vector<Individuo*> &nuevaPoblacion);
-    void seleccion(std::vector<Individuo*> &nuevaPoblacion);
     void cruceOX2(Individuo* padre1, Individuo* padre2, Individuo* hijo);
     void cruceMOC(Individuo* padre1, Individuo* padre2, Individuo* hijo1, Individuo* hijo2);
     void cruce(std::vector<Individuo*> &IndividuosACruzar);
@@ -23,7 +24,7 @@ private:
     bool comprobarElitismo(std::vector<Individuo *> &individuosNuevos, std::vector<Individuo*> &elites);
     bool insertarElite(int perdedor, std::vector<Individuo *>& nuevosIndividuos, int eliteAInsertar);
 
-    std::ofstream log;
+
 
 public:
     EvolutivoGeneracional();

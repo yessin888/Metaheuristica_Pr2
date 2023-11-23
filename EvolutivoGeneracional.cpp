@@ -52,25 +52,27 @@ void EvolutivoGeneracional::executeEvolutivo() {
     auto startTime = std::chrono::high_resolution_clock::now(); // inicialización tiempo inicio
     auto endTime = std::chrono::high_resolution_clock::now();   // inicialización tiempo fin
     auto elapsed_seconds = std::chrono::duration_cast<std::chrono::seconds>(endTime - startTime); //inicialización tiempo transcurrido
-    std::vector<Individuo*> individuosSeleccionados;
-    std::vector<Individuo*> elites;
+    std::vector<Individuo*> individuosSeleccionados; // individuos resultantes tras hacer la selección
+    std::vector<Individuo*> elites; // vector auxiliar para recoger aquellos individuos élites que no se mantiene en la nueva población
+
 //todo generaciones contador
     while( numEvaluaciones < loader->getNumEvaluaciones() && elapsed_seconds.count() < loader->getTiempoParada() ) {
         //SELECCIÓN
         while(individuosSeleccionados.size() < loader->getTamPoblacion()) { // hago torneo hasta seleccionar todos los individuos
             int torneoWinner = torneo(); // hago el torneo
-            primeraVez = false; // variable para la gestión del log
             individuosSeleccionados.push_back(poblacion->getIndividuos()[torneoWinner]); // almaceno los individuos seleccionados
+            primeraVez = false; // variable para la gestión del log
         }
-        primeraVez = numEvaluaciones == 0;
+        primeraVez = numEvaluaciones == 0; // variable para la gestión del log
         //CRUCE
         cruce(individuosSeleccionados);
 
-        primeraVez = numEvaluaciones == 0;
+        primeraVez = numEvaluaciones == 0; // variable para la gestión del log
         //MUTACIÓN
         mutacion(individuosSeleccionados);
 
-        primeraVez = numEvaluaciones == 0;
+        primeraVez = numEvaluaciones == 0; // variable para la gestión del log
+
         //REMPLAZAMIENTO
         if( !this->comprobarElitismo(individuosSeleccionados,elites) && elites.size() != 0 ) { // compruebo si los elites se mantienen en la nueva población
             // en 'elites' se insertan los élites que faltan en la población
@@ -96,12 +98,9 @@ void EvolutivoGeneracional::executeEvolutivo() {
         elites.clear(); // reinicio el vector
         log << "" << std::endl;
 
-
-        //todo remplazamiento a lo mejor tiene que ser como operador= en composición o algo asi con la memoria
-
-        endTime = std::chrono::high_resolution_clock::now();
+        endTime = std::chrono::high_resolution_clock::now(); // actualizo el contador
         elapsed_seconds = std::chrono::duration_cast<std::chrono::seconds>(endTime - startTime); // actualizo el número de segundos que han transcurrido desde el inicio
-        numEvaluaciones++;
+        numEvaluaciones++; // actualizo el contador
 
         primeraVez = false;
     }
@@ -114,20 +113,25 @@ void EvolutivoGeneracional::executeEvolutivo() {
     }
 
     std::cout << "tiempo" << elapsed_seconds.count() << std::endl;
+    log << "Número de evaluaciones ejecutada: " << numEvaluaciones << ", tiempo transcurrido: " << elapsed_seconds.count() << " segundos" << std::endl;
 
 
 
 
 }
 
+/*
+ * Método que el individuo con menor coste entre una serie de individuos elegidos aleatoriamente
+ * @return: un entero que representa el índice en la población del individuo ganador
+ */
 int EvolutivoGeneracional::torneo() {
 
     FileLoader *loader = FileLoader::GetInstancia();
-    std::set<int> individuosSeleccionados;
+    std::set<int> individuosSeleccionados; // conjunto para evitar repetidos
     double mejorCoste = INT_MAX;  // coste mejor individuo
     int mejorIndividuo = 0; // mejor individuo
 
-    while (individuosSeleccionados.size() < loader->getKBest()) {
+    while (individuosSeleccionados.size() < loader->getKBest()) { // genero tantos como k
 
         int numero = (rand() % (loader->getTamPoblacion())); // elijo un individuo de la población de manera aleatoria
         individuosSeleccionados.insert(numero); // evito duplicar los individuos con el conjunto
@@ -156,6 +160,11 @@ int EvolutivoGeneracional::torneo() {
 
 }
 
+/*
+ * Método que se encarga de aplicar el cruce pertinente sobre los individuos
+ * @param individuosACruzar: vector de individuos
+ * @post: el vector individuosACruzar se ve modificado por los cruces
+ */
 void EvolutivoGeneracional::cruce(std::vector<Individuo*> &IndividuosACruzar) {
 
     FileLoader* loader = FileLoader::GetInstancia();
@@ -163,17 +172,18 @@ void EvolutivoGeneracional::cruce(std::vector<Individuo*> &IndividuosACruzar) {
     Individuo* padre2 = nullptr;
     Individuo* hijo1 = nullptr;
     Individuo* hijo2 = nullptr;
-    for ( int i = 0; i < IndividuosACruzar.size() - 1; i+=2 ) {
+    for ( int i = 0; i < IndividuosACruzar.size() - 1; i+=2 ) { // itero de dos en dos
 
         //todo considerar poblaciones de tamaño impar
-        padre1 = IndividuosACruzar[i];
-        padre2 = IndividuosACruzar[i+1];
+        padre1 = IndividuosACruzar[i]; // inicializo el padre1
+        padre2 = IndividuosACruzar[i+1]; // inicializo el padre2
         int random = (rand() % (10)); // aleatorio para simular 70%
 
-        if( random < (int)(loader->getProbabilidadCruce() / 10) ) {
-            hijo1 = new Individuo(*padre1);
-            hijo2 = new Individuo(*padre2);
+        if( random < (int)(loader->getProbabilidadCruce() / 10) ) { // simulo probabilidad
+            hijo1 = new Individuo(*padre1); // inicializo el hijo1 igual que el padre1
+            hijo2 = new Individuo(*padre2); // inicializo el hijo2 igual que el padre2
             if( loader->getTipoCruce() == "OX2" ) {
+
                 if (primeraVez) {
                     log << "Aplico el cruce OX2 sobre" << "\n" << "padre1: ";
                     for (int j = 0; j < padre1->getVIndividuo().size(); ++j) {
@@ -186,7 +196,7 @@ void EvolutivoGeneracional::cruce(std::vector<Individuo*> &IndividuosACruzar) {
                     log << "" << std::endl;
                 }
 
-                cruceOX2(padre1,padre2,hijo1);
+                cruceOX2(padre1,padre2,hijo1); // hago el cruce OX2 entre padre1-padre2 para obtener el hijo1
 
                 if (primeraVez) {
                     log << "\nEl hijo obtenido usando OX2 para el padre1-padre2" << "\n" << "hijo: ";
@@ -197,10 +207,10 @@ void EvolutivoGeneracional::cruce(std::vector<Individuo*> &IndividuosACruzar) {
                     primeraVez = false;
                 }
 
-                cruceOX2(padre2,padre1,hijo2);
-                IndividuosACruzar[i] = hijo1;
+                cruceOX2(padre2,padre1,hijo2); // hago el cruce OX2 entre padre2-padre1 para obtener el hijo2
+                IndividuosACruzar[i] = hijo1; // introduzco el hijo1 en el vector de individuso
                 IndividuosACruzar[i]->setEvaluado(false); // indico que el individuo se ha modificado y que por tanto es necesario racalcular el coste posteriormente
-                IndividuosACruzar[i+1] = hijo2;
+                IndividuosACruzar[i+1] = hijo2; // introduzco el hijo2 en el vector de individuso
                 IndividuosACruzar[i+1]->setEvaluado(false); // indico que el individuo se ha modificado y que por tanto es necesario racalcular el coste posteriormente
             }else{
                 if( loader->getTipoCruce() == "MOC" ){
@@ -215,7 +225,9 @@ void EvolutivoGeneracional::cruce(std::vector<Individuo*> &IndividuosACruzar) {
                         }
                         log << "" << std::endl;
                     }
-                    cruceMOC(padre1,padre2,hijo1,hijo2);
+
+                    cruceMOC(padre1,padre2,hijo1,hijo2); // aplico MOC para obtener ambos hijos
+
                     if (primeraVez) {
                         log << "\nLos hijos obtenidos usando MOC" << "\n" << "hijo1: ";
                         for (int j = 0; j < hijo1->getVIndividuo().size(); ++j) {
@@ -229,9 +241,9 @@ void EvolutivoGeneracional::cruce(std::vector<Individuo*> &IndividuosACruzar) {
                         primeraVez = false;
                     }
 
-                    IndividuosACruzar[i] = hijo1;
+                    IndividuosACruzar[i] = hijo1; // introduzco el hijo1 en el vector de individuos
                     IndividuosACruzar[i]->setEvaluado(false); // indico que el individuo se ha modificado y que por tanto es necesario racalcular el coste posteriormente
-                    IndividuosACruzar[i+1] = hijo2;
+                    IndividuosACruzar[i+1] = hijo2; // introduzco el hijo2 en el vector de individuos
                     IndividuosACruzar[i+1]->setEvaluado(false); // indico que el individuo se ha modificado y que por tanto es necesario racalcular el coste posteriormente
                 }else{
                     throw std::invalid_argument("El algoritmo de cruce especificado en el paramFile es incorrecto, recuerda que debe ser \"OX2\" o \"MOC\"");
@@ -245,13 +257,15 @@ void EvolutivoGeneracional::cruce(std::vector<Individuo*> &IndividuosACruzar) {
 }
 
 /*
- * Genera un hijo a partir del padre1 y las posiciones seleccionadas en el padre2
+ * Genera un hijo a partir de dos individuos mediante el operador OX2
  * @pre hijo inicializado como padre1
- *
+ * @param padre1, padre2: inidividuos que representan a los padres
+ * @param hijo: individuo resultante de la descendencia
+ * @post: hijo se ve modificado por el operador
  */
 
 void EvolutivoGeneracional::cruceOX2(Individuo *padre1, Individuo *padre2, Individuo *hijo) {
-    //todo mostrar en log más a fondo
+
     int centinela = 0;
     std::vector<int> elementosSeleccionados;
     int i = 0;
@@ -263,7 +277,7 @@ void EvolutivoGeneracional::cruceOX2(Individuo *padre1, Individuo *padre2, Indiv
 
     for (int i = 0; i < padre2->getVIndividuo().size() ; i++) {
         int numero = (rand() % (10)); // aleatorio de [0-9]
-        if( numero < 5 ) {
+        if( numero < 5 ) { // simulo probabilidad
             elementosSeleccionados.push_back( padre2->getVIndividuo()[i] ); // elemento se añade a la lista
             if (primeraVez) {
                 log << padre2->getVIndividuo()[i] << " ";
@@ -297,13 +311,15 @@ void EvolutivoGeneracional::cruceOX2(Individuo *padre1, Individuo *padre2, Indiv
 }
 
 /*
- * @pre: el hijo debe ser inicializado como el padre1
- *
- * */
+ * genero dos hijos mutando dos individuos mediante el operador MOC
+ * @pre: el hijoi debe ser inicializado como el padrei, para i=1 e i=2
+ * @param padre1, padre2: inidividuos que representan a los padres
+ * @param hijo1, hijo2: individuos resultantes de la descendencia
+ * @post: hijos se ven modificados por el operador
+*/
 
 void EvolutivoGeneracional::cruceMOC(Individuo *padre1, Individuo *padre2, Individuo *hijo1, Individuo* hijo2) {
 
-    FileLoader* loader = FileLoader::GetInstancia();
     int centinela = 0, centinela2 = 0;
     std::vector<int> parteDerechaPadre2;
     std::vector<int> parteDerechaPadre1;
@@ -317,8 +333,8 @@ void EvolutivoGeneracional::cruceMOC(Individuo *padre1, Individuo *padre2, Indiv
     }
 
     for (int j = posicionSeparacion; j < padre1->getVIndividuo().size(); j++) {
-        parteDerechaPadre1.push_back(padre1->getVIndividuo()[j]); // relleno los elementos correspondiente a la parte derecha
-        parteDerechaPadre2.push_back(padre2->getVIndividuo()[j]);
+        parteDerechaPadre1.push_back(padre1->getVIndividuo()[j]); // relleno los elementos correspondiente a la parte derecha del padre1
+        parteDerechaPadre2.push_back(padre2->getVIndividuo()[j]); // relleno los elementos correspondiente a la parte derecha del padre2
     }
 
     while( i < hijo1->getVIndividuo().size() && fin ) {
@@ -358,19 +374,26 @@ void EvolutivoGeneracional::cruceMOC(Individuo *padre1, Individuo *padre2, Indiv
 
 }
 
+/*
+ * Muto el vector de individuos mediante un swap de dos elementos según una probabilidad
+ * @param individuosAMutar: vector de individuos
+ */
+
 void EvolutivoGeneracional::mutacion(std::vector<Individuo *> &IndividuosAMutar) {
 
     FileLoader* loader = FileLoader::GetInstancia();
 
     for (int i = 0; i < IndividuosAMutar.size(); i++) {
         int random = (rand() % (10)); // simular probabilidad
-        if( random < (int)(loader->getProbabilidadMutacion() / 10) ) {
+        if( random < (int)(loader->getProbabilidadMutacion() / 10) ) { // simulo probabilidad
+
             if ( primeraVez ) {
                 log << "\n\nEjemplo de operador mutación: \n" << "Lo aplico sobre: " << std::endl;
                 for (int j = 0; j < IndividuosAMutar[i]->getVIndividuo().size(); ++j) {
                     log << IndividuosAMutar[i]->getVIndividuo()[j] << " ";
                 }
             }
+
             int posicionRandom1 = (rand() % (loader->getTamDatos())); // primera posición del individuo para el 2-opt
             int posicionRandom2 = (rand() % (loader->getTamDatos())); // segunda posición del individuo para el 2-opt
             std::swap(IndividuosAMutar[i]->getVIndividuo()[posicionRandom1],IndividuosAMutar[i]->getVIndividuo()[posicionRandom2]); // aplico 2-opt
@@ -406,13 +429,13 @@ bool EvolutivoGeneracional::comprobarElitismo(std::vector<Individuo *> &individu
         log << "Compruebo si se mantiene el elitismo en la descendencia" << std::endl;
     }
 
-    int elementosElites = 0;
+    int elementosElites = 0; // contador de elementos élites que se mantienen en la descendencia
     for (int i = 0; i < poblacion->getElite().size(); i++) {
         bool encontrado = false;
         for (int j = 0; j < individuosNuevos.size(); ++j) {
-            if( poblacion->getElite()[i] == individuosNuevos[j] ) {
+            if( poblacion->getElite()[i] == individuosNuevos[j] ) { // compruebo si el élite se encuentra en la población
                encontrado = true;
-               elementosElites++;
+               elementosElites++; // actualizo contador
                 if (primeraVez) {
                     log << "Se mantiene el élite " << i << " en la descendencia" << std::endl;
                     for (int k = 0; k < elites[i]->getVIndividuo().size(); ++k) {
@@ -422,8 +445,8 @@ bool EvolutivoGeneracional::comprobarElitismo(std::vector<Individuo *> &individu
                 }
             }
         }
-        if( !encontrado ) {
-            elites.push_back(poblacion->getElite()[i]);
+        if( !encontrado ) { // en caso de que el élite no siga en la descendencia
+            elites.push_back(poblacion->getElite()[i]); // almaceno el élite en el vector 'elite'
             if (primeraVez) {
                 log << "No se mantiene el élite " << i << " en la descendencia" << std::endl;
                 for (int k = 0; k < elites[i]->getVIndividuo().size(); ++k) {
@@ -437,11 +460,15 @@ bool EvolutivoGeneracional::comprobarElitismo(std::vector<Individuo *> &individu
     return ( elementosElites == poblacion->getElite().size() ); // si el número de elites es igual al tamaño de elites de la población -> true
 }
 
+/*
+ * Método que devuelve el perdedor de entre una serie de individuos seleccionados de manera aleatoria
+ * @param nuevaPoblacion: vector de individuos sobre el que se trabaja
+ * @return: se devuelve el índice en el vector 'nuevaPoblacion' correspondiente al perdedor del torneo
+ */
 int EvolutivoGeneracional::torneoPerdedor(std::vector<Individuo*> &nuevaPoblacion) {
 
     FileLoader *loader = FileLoader::GetInstancia();
-    std::set<int> individuosSeleccionados;
-    //std::set<int> indicesElites;
+    std::set<int> individuosSeleccionados; // conjunto para evitar duplicados
     double peorCoste = -INT_MAX;  // coste peeor individuo
     int peorIndividuo = 0; // peor individuo
 
@@ -481,6 +508,12 @@ int EvolutivoGeneracional::torneoPerdedor(std::vector<Individuo*> &nuevaPoblacio
 
 }
 
+/*
+ * Inserto el élite en el vector dado en los parámetros
+ * @param perdedor: posición en la que insertar el élite
+ * @nuevoIndividuos: vector de individuos en el cual hay que insertar el élite
+ * @param eliteAInsertar: índice que representa el élite de la población a insertar
+ */
 bool EvolutivoGeneracional::insertarElite(int perdedor, std::vector<Individuo *>& nuevoIndividuos, int eliteAInsertar) {
 
     for (int i = 0; i < poblacion->getElite().size(); i++) {

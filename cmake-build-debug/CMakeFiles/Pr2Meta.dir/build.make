@@ -52,10 +52,10 @@ RM = "C:\Program Files\JetBrains\CLion 2023.2.2\bin\cmake\win\x64\bin\cmake.exe"
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Yessin\Documents\clases\metaPr1
+CMAKE_SOURCE_DIR = C:\Users\Yessin\Desktop\clases\metaPr1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Yessin\Documents\clases\metaPr1\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\Yessin\Desktop\clases\metaPr1\cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Pr2Meta.dir/depend.make
@@ -69,88 +69,88 @@ include CMakeFiles/Pr2Meta.dir/progress.make
 include CMakeFiles/Pr2Meta.dir/flags.make
 
 CMakeFiles/Pr2Meta.dir/main.cpp.obj: CMakeFiles/Pr2Meta.dir/flags.make
-CMakeFiles/Pr2Meta.dir/main.cpp.obj: C:/Users/Yessin/Documents/clases/metaPr1/main.cpp
+CMakeFiles/Pr2Meta.dir/main.cpp.obj: C:/Users/Yessin/Desktop/clases/metaPr1/main.cpp
 CMakeFiles/Pr2Meta.dir/main.cpp.obj: CMakeFiles/Pr2Meta.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Yessin\Documents\clases\metaPr1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Pr2Meta.dir/main.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Pr2Meta.dir/main.cpp.obj -MF CMakeFiles\Pr2Meta.dir\main.cpp.obj.d -o CMakeFiles\Pr2Meta.dir\main.cpp.obj -c C:\Users\Yessin\Documents\clases\metaPr1\main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Yessin\Desktop\clases\metaPr1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Pr2Meta.dir/main.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Pr2Meta.dir/main.cpp.obj -MF CMakeFiles\Pr2Meta.dir\main.cpp.obj.d -o CMakeFiles\Pr2Meta.dir\main.cpp.obj -c C:\Users\Yessin\Desktop\clases\metaPr1\main.cpp
 
 CMakeFiles/Pr2Meta.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Pr2Meta.dir/main.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Yessin\Documents\clases\metaPr1\main.cpp > CMakeFiles\Pr2Meta.dir\main.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Yessin\Desktop\clases\metaPr1\main.cpp > CMakeFiles\Pr2Meta.dir\main.cpp.i
 
 CMakeFiles/Pr2Meta.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Pr2Meta.dir/main.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Yessin\Documents\clases\metaPr1\main.cpp -o CMakeFiles\Pr2Meta.dir\main.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Yessin\Desktop\clases\metaPr1\main.cpp -o CMakeFiles\Pr2Meta.dir\main.cpp.s
 
 CMakeFiles/Pr2Meta.dir/FileLoader.cpp.obj: CMakeFiles/Pr2Meta.dir/flags.make
-CMakeFiles/Pr2Meta.dir/FileLoader.cpp.obj: C:/Users/Yessin/Documents/clases/metaPr1/FileLoader.cpp
+CMakeFiles/Pr2Meta.dir/FileLoader.cpp.obj: C:/Users/Yessin/Desktop/clases/metaPr1/FileLoader.cpp
 CMakeFiles/Pr2Meta.dir/FileLoader.cpp.obj: CMakeFiles/Pr2Meta.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Yessin\Documents\clases\metaPr1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Pr2Meta.dir/FileLoader.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Pr2Meta.dir/FileLoader.cpp.obj -MF CMakeFiles\Pr2Meta.dir\FileLoader.cpp.obj.d -o CMakeFiles\Pr2Meta.dir\FileLoader.cpp.obj -c C:\Users\Yessin\Documents\clases\metaPr1\FileLoader.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Yessin\Desktop\clases\metaPr1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Pr2Meta.dir/FileLoader.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Pr2Meta.dir/FileLoader.cpp.obj -MF CMakeFiles\Pr2Meta.dir\FileLoader.cpp.obj.d -o CMakeFiles\Pr2Meta.dir\FileLoader.cpp.obj -c C:\Users\Yessin\Desktop\clases\metaPr1\FileLoader.cpp
 
 CMakeFiles/Pr2Meta.dir/FileLoader.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Pr2Meta.dir/FileLoader.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Yessin\Documents\clases\metaPr1\FileLoader.cpp > CMakeFiles\Pr2Meta.dir\FileLoader.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Yessin\Desktop\clases\metaPr1\FileLoader.cpp > CMakeFiles\Pr2Meta.dir\FileLoader.cpp.i
 
 CMakeFiles/Pr2Meta.dir/FileLoader.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Pr2Meta.dir/FileLoader.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Yessin\Documents\clases\metaPr1\FileLoader.cpp -o CMakeFiles\Pr2Meta.dir\FileLoader.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Yessin\Desktop\clases\metaPr1\FileLoader.cpp -o CMakeFiles\Pr2Meta.dir\FileLoader.cpp.s
 
 CMakeFiles/Pr2Meta.dir/Poblacion.cpp.obj: CMakeFiles/Pr2Meta.dir/flags.make
-CMakeFiles/Pr2Meta.dir/Poblacion.cpp.obj: C:/Users/Yessin/Documents/clases/metaPr1/Poblacion.cpp
+CMakeFiles/Pr2Meta.dir/Poblacion.cpp.obj: C:/Users/Yessin/Desktop/clases/metaPr1/Poblacion.cpp
 CMakeFiles/Pr2Meta.dir/Poblacion.cpp.obj: CMakeFiles/Pr2Meta.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Yessin\Documents\clases\metaPr1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Pr2Meta.dir/Poblacion.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Pr2Meta.dir/Poblacion.cpp.obj -MF CMakeFiles\Pr2Meta.dir\Poblacion.cpp.obj.d -o CMakeFiles\Pr2Meta.dir\Poblacion.cpp.obj -c C:\Users\Yessin\Documents\clases\metaPr1\Poblacion.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Yessin\Desktop\clases\metaPr1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Pr2Meta.dir/Poblacion.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Pr2Meta.dir/Poblacion.cpp.obj -MF CMakeFiles\Pr2Meta.dir\Poblacion.cpp.obj.d -o CMakeFiles\Pr2Meta.dir\Poblacion.cpp.obj -c C:\Users\Yessin\Desktop\clases\metaPr1\Poblacion.cpp
 
 CMakeFiles/Pr2Meta.dir/Poblacion.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Pr2Meta.dir/Poblacion.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Yessin\Documents\clases\metaPr1\Poblacion.cpp > CMakeFiles\Pr2Meta.dir\Poblacion.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Yessin\Desktop\clases\metaPr1\Poblacion.cpp > CMakeFiles\Pr2Meta.dir\Poblacion.cpp.i
 
 CMakeFiles/Pr2Meta.dir/Poblacion.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Pr2Meta.dir/Poblacion.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Yessin\Documents\clases\metaPr1\Poblacion.cpp -o CMakeFiles\Pr2Meta.dir\Poblacion.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Yessin\Desktop\clases\metaPr1\Poblacion.cpp -o CMakeFiles\Pr2Meta.dir\Poblacion.cpp.s
 
 CMakeFiles/Pr2Meta.dir/Individuo.cpp.obj: CMakeFiles/Pr2Meta.dir/flags.make
-CMakeFiles/Pr2Meta.dir/Individuo.cpp.obj: C:/Users/Yessin/Documents/clases/metaPr1/Individuo.cpp
+CMakeFiles/Pr2Meta.dir/Individuo.cpp.obj: C:/Users/Yessin/Desktop/clases/metaPr1/Individuo.cpp
 CMakeFiles/Pr2Meta.dir/Individuo.cpp.obj: CMakeFiles/Pr2Meta.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Yessin\Documents\clases\metaPr1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Pr2Meta.dir/Individuo.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Pr2Meta.dir/Individuo.cpp.obj -MF CMakeFiles\Pr2Meta.dir\Individuo.cpp.obj.d -o CMakeFiles\Pr2Meta.dir\Individuo.cpp.obj -c C:\Users\Yessin\Documents\clases\metaPr1\Individuo.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Yessin\Desktop\clases\metaPr1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Pr2Meta.dir/Individuo.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Pr2Meta.dir/Individuo.cpp.obj -MF CMakeFiles\Pr2Meta.dir\Individuo.cpp.obj.d -o CMakeFiles\Pr2Meta.dir\Individuo.cpp.obj -c C:\Users\Yessin\Desktop\clases\metaPr1\Individuo.cpp
 
 CMakeFiles/Pr2Meta.dir/Individuo.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Pr2Meta.dir/Individuo.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Yessin\Documents\clases\metaPr1\Individuo.cpp > CMakeFiles\Pr2Meta.dir\Individuo.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Yessin\Desktop\clases\metaPr1\Individuo.cpp > CMakeFiles\Pr2Meta.dir\Individuo.cpp.i
 
 CMakeFiles/Pr2Meta.dir/Individuo.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Pr2Meta.dir/Individuo.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Yessin\Documents\clases\metaPr1\Individuo.cpp -o CMakeFiles\Pr2Meta.dir\Individuo.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Yessin\Desktop\clases\metaPr1\Individuo.cpp -o CMakeFiles\Pr2Meta.dir\Individuo.cpp.s
 
 CMakeFiles/Pr2Meta.dir/EvolutivoGeneracional.cpp.obj: CMakeFiles/Pr2Meta.dir/flags.make
-CMakeFiles/Pr2Meta.dir/EvolutivoGeneracional.cpp.obj: C:/Users/Yessin/Documents/clases/metaPr1/EvolutivoGeneracional.cpp
+CMakeFiles/Pr2Meta.dir/EvolutivoGeneracional.cpp.obj: C:/Users/Yessin/Desktop/clases/metaPr1/EvolutivoGeneracional.cpp
 CMakeFiles/Pr2Meta.dir/EvolutivoGeneracional.cpp.obj: CMakeFiles/Pr2Meta.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Yessin\Documents\clases\metaPr1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Pr2Meta.dir/EvolutivoGeneracional.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Pr2Meta.dir/EvolutivoGeneracional.cpp.obj -MF CMakeFiles\Pr2Meta.dir\EvolutivoGeneracional.cpp.obj.d -o CMakeFiles\Pr2Meta.dir\EvolutivoGeneracional.cpp.obj -c C:\Users\Yessin\Documents\clases\metaPr1\EvolutivoGeneracional.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Yessin\Desktop\clases\metaPr1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Pr2Meta.dir/EvolutivoGeneracional.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Pr2Meta.dir/EvolutivoGeneracional.cpp.obj -MF CMakeFiles\Pr2Meta.dir\EvolutivoGeneracional.cpp.obj.d -o CMakeFiles\Pr2Meta.dir\EvolutivoGeneracional.cpp.obj -c C:\Users\Yessin\Desktop\clases\metaPr1\EvolutivoGeneracional.cpp
 
 CMakeFiles/Pr2Meta.dir/EvolutivoGeneracional.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Pr2Meta.dir/EvolutivoGeneracional.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Yessin\Documents\clases\metaPr1\EvolutivoGeneracional.cpp > CMakeFiles\Pr2Meta.dir\EvolutivoGeneracional.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Yessin\Desktop\clases\metaPr1\EvolutivoGeneracional.cpp > CMakeFiles\Pr2Meta.dir\EvolutivoGeneracional.cpp.i
 
 CMakeFiles/Pr2Meta.dir/EvolutivoGeneracional.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Pr2Meta.dir/EvolutivoGeneracional.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Yessin\Documents\clases\metaPr1\EvolutivoGeneracional.cpp -o CMakeFiles\Pr2Meta.dir\EvolutivoGeneracional.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Yessin\Desktop\clases\metaPr1\EvolutivoGeneracional.cpp -o CMakeFiles\Pr2Meta.dir\EvolutivoGeneracional.cpp.s
 
 CMakeFiles/Pr2Meta.dir/TSP.cpp.obj: CMakeFiles/Pr2Meta.dir/flags.make
-CMakeFiles/Pr2Meta.dir/TSP.cpp.obj: C:/Users/Yessin/Documents/clases/metaPr1/TSP.cpp
+CMakeFiles/Pr2Meta.dir/TSP.cpp.obj: C:/Users/Yessin/Desktop/clases/metaPr1/TSP.cpp
 CMakeFiles/Pr2Meta.dir/TSP.cpp.obj: CMakeFiles/Pr2Meta.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Yessin\Documents\clases\metaPr1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Pr2Meta.dir/TSP.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Pr2Meta.dir/TSP.cpp.obj -MF CMakeFiles\Pr2Meta.dir\TSP.cpp.obj.d -o CMakeFiles\Pr2Meta.dir\TSP.cpp.obj -c C:\Users\Yessin\Documents\clases\metaPr1\TSP.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Yessin\Desktop\clases\metaPr1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Pr2Meta.dir/TSP.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Pr2Meta.dir/TSP.cpp.obj -MF CMakeFiles\Pr2Meta.dir\TSP.cpp.obj.d -o CMakeFiles\Pr2Meta.dir\TSP.cpp.obj -c C:\Users\Yessin\Desktop\clases\metaPr1\TSP.cpp
 
 CMakeFiles/Pr2Meta.dir/TSP.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Pr2Meta.dir/TSP.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Yessin\Documents\clases\metaPr1\TSP.cpp > CMakeFiles\Pr2Meta.dir\TSP.cpp.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Yessin\Desktop\clases\metaPr1\TSP.cpp > CMakeFiles\Pr2Meta.dir\TSP.cpp.i
 
 CMakeFiles/Pr2Meta.dir/TSP.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Pr2Meta.dir/TSP.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Yessin\Documents\clases\metaPr1\TSP.cpp -o CMakeFiles\Pr2Meta.dir\TSP.cpp.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Yessin\Desktop\clases\metaPr1\TSP.cpp -o CMakeFiles\Pr2Meta.dir\TSP.cpp.s
 
 # Object files for target Pr2Meta
 Pr2Meta_OBJECTS = \
@@ -174,7 +174,7 @@ Pr2Meta.exe: CMakeFiles/Pr2Meta.dir/build.make
 Pr2Meta.exe: CMakeFiles/Pr2Meta.dir/linkLibs.rsp
 Pr2Meta.exe: CMakeFiles/Pr2Meta.dir/objects1.rsp
 Pr2Meta.exe: CMakeFiles/Pr2Meta.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Yessin\Documents\clases\metaPr1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable Pr2Meta.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Yessin\Desktop\clases\metaPr1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable Pr2Meta.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Pr2Meta.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -186,6 +186,6 @@ CMakeFiles/Pr2Meta.dir/clean:
 .PHONY : CMakeFiles/Pr2Meta.dir/clean
 
 CMakeFiles/Pr2Meta.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\Yessin\Documents\clases\metaPr1 C:\Users\Yessin\Documents\clases\metaPr1 C:\Users\Yessin\Documents\clases\metaPr1\cmake-build-debug C:\Users\Yessin\Documents\clases\metaPr1\cmake-build-debug C:\Users\Yessin\Documents\clases\metaPr1\cmake-build-debug\CMakeFiles\Pr2Meta.dir\DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\Yessin\Desktop\clases\metaPr1 C:\Users\Yessin\Desktop\clases\metaPr1 C:\Users\Yessin\Desktop\clases\metaPr1\cmake-build-debug C:\Users\Yessin\Desktop\clases\metaPr1\cmake-build-debug C:\Users\Yessin\Desktop\clases\metaPr1\cmake-build-debug\CMakeFiles\Pr2Meta.dir\DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Pr2Meta.dir/depend
 

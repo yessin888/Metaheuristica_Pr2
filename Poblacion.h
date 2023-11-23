@@ -21,7 +21,6 @@ private:
 public:
     Poblacion();
     Poblacion(std::ofstream &log);
-    Poblacion(int size);
     ~Poblacion();
     std::vector<Individuo *> &getIndividuos() ;
     void calcularElite();

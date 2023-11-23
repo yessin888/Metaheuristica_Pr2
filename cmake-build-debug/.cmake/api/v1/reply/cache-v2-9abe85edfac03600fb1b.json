@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/Yessin/Documents/clases/metaPr1/cmake-build-debug"
+			"value" : "c:/Users/Yessin/Desktop/clases/metaPr1/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -643,7 +643,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/Yessin/Documents/clases/metaPr1/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "C:/Users/Yessin/Desktop/clases/metaPr1/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -715,7 +715,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/Yessin/Documents/clases/metaPr1"
+			"value" : "C:/Users/Yessin/Desktop/clases/metaPr1"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1335,7 +1335,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/Yessin/Documents/clases/metaPr1/cmake-build-debug"
+			"value" : "C:/Users/Yessin/Desktop/clases/metaPr1/cmake-build-debug"
 		},
 		{
 			"name" : "Pr2Meta_IS_TOP_LEVEL",
@@ -1359,7 +1359,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/Yessin/Documents/clases/metaPr1"
+			"value" : "C:/Users/Yessin/Desktop/clases/metaPr1"
 		},
 		{
 			"name" : "_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED",
