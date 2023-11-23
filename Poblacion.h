@@ -7,6 +7,7 @@
 
 #include "Individuo.h"
 #include <queue>
+#include <fstream>
 
 class Poblacion {
 private:
@@ -15,8 +16,11 @@ private:
     void inicializarPoblacion();
     void generaInidividuoAleatorio(std::vector<int>& v);
     void generaInidividuoGreedy(std::vector<int>& v);
+    std::ofstream *log;
+
 public:
     Poblacion();
+    Poblacion(std::ofstream &log);
     Poblacion(int size);
     ~Poblacion();
     std::vector<Individuo *> &getIndividuos() ;

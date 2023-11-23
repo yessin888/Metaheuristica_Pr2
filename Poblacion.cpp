@@ -8,6 +8,14 @@
 #include "FileLoader.h"
 
 Poblacion::Poblacion() {
+    this->log = nullptr;
+    inicializarPoblacion();
+    elite.resize(FileLoader::GetInstancia()->getNumElite() );
+    calcularElite();
+}
+
+Poblacion::Poblacion(std::ofstream& log) {
+    this->log = &log;
     inicializarPoblacion();
     elite.resize(FileLoader::GetInstancia()->getNumElite() );
     calcularElite();
@@ -24,15 +32,31 @@ void Poblacion::inicializarPoblacion() {
     FileLoader* loader = FileLoader::GetInstancia();
     int rango = (loader->getTamPoblacion() * loader->getPorcentajeInicializacion()) / 100; // establezco el número de elementos que tengo que generar aleatoriamente
 
+    *log << "Inicializo los individuos de la población: " << rango << " número de individuos generados aleatoriamente, " << (loader->getTamPoblacion() - rango) << " generados mediante greedy" << std::endl;
+
     for(int i = 0; i < rango; i++) { // genero un procentaje de manera aleatoria
         std::vector<int> individuoAleatorio;
         generaInidividuoAleatorio(individuoAleatorio);
         this->individuos.push_back(new Individuo(individuoAleatorio)); // creo un individuo aleatorio y lo inserto al vector de individuos
+        if ( i == 0 ) {
+            *log << "Ejemplo de primer individuo generado aleaotoriamente: " << std::endl;
+            for (int j = 0; j < individuoAleatorio.size(); ++j) {
+                *log << individuoAleatorio[j] << " ";
+            }
+            *log << "" << std::endl;
+        }
     }
     for (int i = rango; i < loader->getTamPoblacion() ; i++) { // genero el resto de individuos con un greedy aleatorizado
         std::vector<int> individuoAleatorio;
         generaInidividuoGreedy(individuoAleatorio);
         this->individuos.push_back(new Individuo(individuoAleatorio)); // creo un individuo aleatorio y lo inserto al vector de individuos
+        if ( i == rango ) {
+            *log << "Ejemplo de primer individuo generado mediante greedy: " << std::endl;
+            for (int j = 0; j < individuoAleatorio.size(); ++j) {
+                *log << individuoAleatorio[j] << " ";
+            }
+            *log << "" << std::endl;
+        }
     }
 
 
@@ -140,14 +164,22 @@ void Poblacion::generaInidividuoGreedy(std::vector<int> &v) {
 
 void Poblacion::calcularElite() {
 
+    *log << "\nCalculo los élites de la población" << std::endl;
     FileLoader* loader = FileLoader::GetInstancia();
-    //ordenar(this->individuos);
     auto aux = individuos;
     std::sort(aux.begin(),aux.end(), comparadorIndividuos); // ordeno de menor a mayor por costes
     for (int i = 0; i < loader->getNumElite(); i++) {
+
         this->elite[i] = ( new Individuo(*aux[i]) ); // elijo tantos elementos como elites tenga el algoritmo
-        std::cout << "Elite -> " << elite[i]->getCosteAsociado() << std::endl;
+
+        *log << "Elite " << i + 1 << " -> " << elite[i]->getCosteAsociado() << ", vector: " << std::endl;
+        for (int j = 0; j < elite[i]->getVIndividuo().size(); ++j) {
+            *log << elite[i]->getVIndividuo()[j] << " ";
+        }
+
+        std::cout << "Elite -> "<< i + 1 << " -> "  << elite[i]->getCosteAsociado() << std::endl;
     }
+
 
 }
 

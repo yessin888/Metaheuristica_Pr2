@@ -12,6 +12,7 @@
 class EvolutivoGeneracional {
 private:
     Poblacion* poblacion;
+    bool primeraVez;
     int torneo();
     int torneoPerdedor(std::vector<Individuo*> &nuevaPoblacion);
     void seleccion(std::vector<Individuo*> &nuevaPoblacion);
