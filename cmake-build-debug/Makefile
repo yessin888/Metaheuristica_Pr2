@@ -128,6 +128,30 @@ Pr2Meta/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pr2Meta.dir\build.make CMakeFiles/Pr2Meta.dir/build
 .PHONY : Pr2Meta/fast
 
+EvolutivoDiferencial.obj: EvolutivoDiferencial.cpp.obj
+.PHONY : EvolutivoDiferencial.obj
+
+# target to build an object file
+EvolutivoDiferencial.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pr2Meta.dir\build.make CMakeFiles/Pr2Meta.dir/EvolutivoDiferencial.cpp.obj
+.PHONY : EvolutivoDiferencial.cpp.obj
+
+EvolutivoDiferencial.i: EvolutivoDiferencial.cpp.i
+.PHONY : EvolutivoDiferencial.i
+
+# target to preprocess a source file
+EvolutivoDiferencial.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pr2Meta.dir\build.make CMakeFiles/Pr2Meta.dir/EvolutivoDiferencial.cpp.i
+.PHONY : EvolutivoDiferencial.cpp.i
+
+EvolutivoDiferencial.s: EvolutivoDiferencial.cpp.s
+.PHONY : EvolutivoDiferencial.s
+
+# target to generate assembly for a file
+EvolutivoDiferencial.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pr2Meta.dir\build.make CMakeFiles/Pr2Meta.dir/EvolutivoDiferencial.cpp.s
+.PHONY : EvolutivoDiferencial.cpp.s
+
 EvolutivoGeneracional.obj: EvolutivoGeneracional.cpp.obj
 .PHONY : EvolutivoGeneracional.obj
 
@@ -224,30 +248,6 @@ Poblacion.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pr2Meta.dir\build.make CMakeFiles/Pr2Meta.dir/Poblacion.cpp.s
 .PHONY : Poblacion.cpp.s
 
-TSP.obj: TSP.cpp.obj
-.PHONY : TSP.obj
-
-# target to build an object file
-TSP.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pr2Meta.dir\build.make CMakeFiles/Pr2Meta.dir/TSP.cpp.obj
-.PHONY : TSP.cpp.obj
-
-TSP.i: TSP.cpp.i
-.PHONY : TSP.i
-
-# target to preprocess a source file
-TSP.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pr2Meta.dir\build.make CMakeFiles/Pr2Meta.dir/TSP.cpp.i
-.PHONY : TSP.cpp.i
-
-TSP.s: TSP.cpp.s
-.PHONY : TSP.s
-
-# target to generate assembly for a file
-TSP.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pr2Meta.dir\build.make CMakeFiles/Pr2Meta.dir/TSP.cpp.s
-.PHONY : TSP.cpp.s
-
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -281,6 +281,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Pr2Meta
+	@echo ... EvolutivoDiferencial.obj
+	@echo ... EvolutivoDiferencial.i
+	@echo ... EvolutivoDiferencial.s
 	@echo ... EvolutivoGeneracional.obj
 	@echo ... EvolutivoGeneracional.i
 	@echo ... EvolutivoGeneracional.s
@@ -293,9 +296,6 @@ help:
 	@echo ... Poblacion.obj
 	@echo ... Poblacion.i
 	@echo ... Poblacion.s
-	@echo ... TSP.obj
-	@echo ... TSP.i
-	@echo ... TSP.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

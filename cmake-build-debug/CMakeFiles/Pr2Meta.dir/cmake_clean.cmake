@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Pr2Meta.dir/EvolutivoDiferencial.cpp.obj"
+  "CMakeFiles/Pr2Meta.dir/EvolutivoDiferencial.cpp.obj.d"
   "CMakeFiles/Pr2Meta.dir/EvolutivoGeneracional.cpp.obj"
   "CMakeFiles/Pr2Meta.dir/EvolutivoGeneracional.cpp.obj.d"
   "CMakeFiles/Pr2Meta.dir/FileLoader.cpp.obj"
@@ -7,8 +9,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/Pr2Meta.dir/Individuo.cpp.obj.d"
   "CMakeFiles/Pr2Meta.dir/Poblacion.cpp.obj"
   "CMakeFiles/Pr2Meta.dir/Poblacion.cpp.obj.d"
-  "CMakeFiles/Pr2Meta.dir/TSP.cpp.obj"
-  "CMakeFiles/Pr2Meta.dir/TSP.cpp.obj.d"
   "CMakeFiles/Pr2Meta.dir/main.cpp.obj"
   "CMakeFiles/Pr2Meta.dir/main.cpp.obj.d"
   "Pr2Meta.exe"

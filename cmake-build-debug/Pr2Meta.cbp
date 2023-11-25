@@ -82,6 +82,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/Yessin/Desktop/clases/metaPr1/EvolutivoDiferencial.cpp">
+			<Option target="Pr2Meta"/>
+		</Unit>
+		<Unit filename="C:/Users/Yessin/Desktop/clases/metaPr1/EvolutivoDiferencial.h">
+			<Option target="Pr2Meta"/>
+		</Unit>
 		<Unit filename="C:/Users/Yessin/Desktop/clases/metaPr1/EvolutivoGeneracional.cpp">
 			<Option target="Pr2Meta"/>
 		</Unit>
@@ -104,12 +110,6 @@
 			<Option target="Pr2Meta"/>
 		</Unit>
 		<Unit filename="C:/Users/Yessin/Desktop/clases/metaPr1/Poblacion.h">
-			<Option target="Pr2Meta"/>
-		</Unit>
-		<Unit filename="C:/Users/Yessin/Desktop/clases/metaPr1/TSP.cpp">
-			<Option target="Pr2Meta"/>
-		</Unit>
-		<Unit filename="C:/Users/Yessin/Desktop/clases/metaPr1/TSP.h">
 			<Option target="Pr2Meta"/>
 		</Unit>
 		<Unit filename="C:/Users/Yessin/Desktop/clases/metaPr1/main.cpp">

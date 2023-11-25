@@ -19,7 +19,6 @@ private:
     std::ofstream *log;
 
 public:
-    Poblacion();
     Poblacion(std::ofstream &log);
     ~Poblacion();
     std::vector<Individuo *> &getIndividuos() ;

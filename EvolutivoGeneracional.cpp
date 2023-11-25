@@ -45,6 +45,9 @@ EvolutivoGeneracional::~EvolutivoGeneracional() {
     }
 }
 
+/*
+ * Método de ejecuón principal
+ */
 void EvolutivoGeneracional::executeEvolutivo() {
 
     FileLoader* loader = FileLoader::GetInstancia();
@@ -263,7 +266,6 @@ void EvolutivoGeneracional::cruce(std::vector<Individuo*> &IndividuosACruzar) {
  * @param hijo: individuo resultante de la descendencia
  * @post: hijo se ve modificado por el operador
  */
-
 void EvolutivoGeneracional::cruceOX2(Individuo *padre1, Individuo *padre2, Individuo *hijo) {
 
     int centinela = 0;

@@ -15,6 +15,6 @@ add_executable(Pr2Meta main.cpp
         EvolutivoGeneracional.cpp
         EvolutivoGeneracional.h
         EvolutivoGeneracional.cpp
-        TSP.cpp
-        TSP.h
+        EvolutivoDiferencial.cpp
+        EvolutivoDiferencial.h
 )

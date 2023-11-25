@@ -7,13 +7,6 @@
 #include "Poblacion.h"
 #include "FileLoader.h"
 
-Poblacion::Poblacion() {
-    this->log = nullptr;
-    inicializarPoblacion();
-    elite.resize(FileLoader::GetInstancia()->getNumElite() );
-    calcularElite();
-}
-
 Poblacion::Poblacion(std::ofstream& log) {
     this->log = &log;
     inicializarPoblacion();
@@ -48,6 +41,8 @@ void Poblacion::inicializarPoblacion() {
     }
     for (int i = rango; i < loader->getTamPoblacion() ; i++) { // genero el resto de individuos con un greedy aleatorizado
         std::vector<int> individuoAleatorio;
+        if (i == 45)
+            std::cout << "";
         generaInidividuoGreedy(individuoAleatorio);
         this->individuos.push_back(new Individuo(individuoAleatorio)); // creo un individuo aleatorio y lo inserto al vector de individuos
 
@@ -153,6 +148,13 @@ void Poblacion::generaInidividuoGreedy(std::vector<int> &v) {
                     ciudadActual = i;
                     marcajeCiudades[i] = true;
                     v.push_back(i);
+                }else{
+                    if (i == loader->getTamDatos() - 1) { // casuistica especial, solo falta por meter el 129 y la única posición libre es la 129
+                        ciudadActual = i;
+                        marcajeCiudades[i] = true;
+                        v.push_back(i);
+                        std::swap(v[loader->getTamDatos() - 1],v[loader->getTamDatos() - 2]); // en este caso meto la 129 en v[129] y hago un swap para que no este en la misma posición
+                    }
                 }
             }
         }

@@ -78,8 +78,6 @@ public:
 
     std::string getTipoSeleccion() const;
 
-    int getProbabilidadTernaria() const;
-
     int getTiempoParada() const;
 
     std::string getConjuntoDatos() const;

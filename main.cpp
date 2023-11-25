@@ -5,7 +5,7 @@
 #include "Individuo.h"
 #include "Poblacion.h"
 #include "EvolutivoGeneracional.h"
-#include "TSP.h"
+#include "EvolutivoDiferencial.h"
 
 
 int main() {
@@ -26,8 +26,8 @@ int main() {
     try{
       EvolutivoGeneracional* aas = new EvolutivoGeneracional();
       aas->executeEvolutivo();
-      //TSP* tsp = new TSP();
-      //tsp->executeTSP();
+      EvolutivoDiferencial* tsp = new EvolutivoDiferencial();
+      tsp->executeTSP();
   }catch(const std::exception& e) {
       std::cout << e.what() << std::endl;
   }

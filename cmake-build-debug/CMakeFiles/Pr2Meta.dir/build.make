@@ -138,19 +138,19 @@ CMakeFiles/Pr2Meta.dir/EvolutivoGeneracional.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Pr2Meta.dir/EvolutivoGeneracional.cpp.s"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Yessin\Desktop\clases\metaPr1\EvolutivoGeneracional.cpp -o CMakeFiles\Pr2Meta.dir\EvolutivoGeneracional.cpp.s
 
-CMakeFiles/Pr2Meta.dir/TSP.cpp.obj: CMakeFiles/Pr2Meta.dir/flags.make
-CMakeFiles/Pr2Meta.dir/TSP.cpp.obj: C:/Users/Yessin/Desktop/clases/metaPr1/TSP.cpp
-CMakeFiles/Pr2Meta.dir/TSP.cpp.obj: CMakeFiles/Pr2Meta.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Yessin\Desktop\clases\metaPr1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Pr2Meta.dir/TSP.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Pr2Meta.dir/TSP.cpp.obj -MF CMakeFiles\Pr2Meta.dir\TSP.cpp.obj.d -o CMakeFiles\Pr2Meta.dir\TSP.cpp.obj -c C:\Users\Yessin\Desktop\clases\metaPr1\TSP.cpp
+CMakeFiles/Pr2Meta.dir/EvolutivoDiferencial.cpp.obj: CMakeFiles/Pr2Meta.dir/flags.make
+CMakeFiles/Pr2Meta.dir/EvolutivoDiferencial.cpp.obj: C:/Users/Yessin/Desktop/clases/metaPr1/EvolutivoDiferencial.cpp
+CMakeFiles/Pr2Meta.dir/EvolutivoDiferencial.cpp.obj: CMakeFiles/Pr2Meta.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Yessin\Desktop\clases\metaPr1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Pr2Meta.dir/EvolutivoDiferencial.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Pr2Meta.dir/EvolutivoDiferencial.cpp.obj -MF CMakeFiles\Pr2Meta.dir\EvolutivoDiferencial.cpp.obj.d -o CMakeFiles\Pr2Meta.dir\EvolutivoDiferencial.cpp.obj -c C:\Users\Yessin\Desktop\clases\metaPr1\EvolutivoDiferencial.cpp
 
-CMakeFiles/Pr2Meta.dir/TSP.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Pr2Meta.dir/TSP.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Yessin\Desktop\clases\metaPr1\TSP.cpp > CMakeFiles\Pr2Meta.dir\TSP.cpp.i
+CMakeFiles/Pr2Meta.dir/EvolutivoDiferencial.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Pr2Meta.dir/EvolutivoDiferencial.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Yessin\Desktop\clases\metaPr1\EvolutivoDiferencial.cpp > CMakeFiles\Pr2Meta.dir\EvolutivoDiferencial.cpp.i
 
-CMakeFiles/Pr2Meta.dir/TSP.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Pr2Meta.dir/TSP.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Yessin\Desktop\clases\metaPr1\TSP.cpp -o CMakeFiles\Pr2Meta.dir\TSP.cpp.s
+CMakeFiles/Pr2Meta.dir/EvolutivoDiferencial.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Pr2Meta.dir/EvolutivoDiferencial.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Yessin\Desktop\clases\metaPr1\EvolutivoDiferencial.cpp -o CMakeFiles\Pr2Meta.dir\EvolutivoDiferencial.cpp.s
 
 # Object files for target Pr2Meta
 Pr2Meta_OBJECTS = \
@@ -159,7 +159,7 @@ Pr2Meta_OBJECTS = \
 "CMakeFiles/Pr2Meta.dir/Poblacion.cpp.obj" \
 "CMakeFiles/Pr2Meta.dir/Individuo.cpp.obj" \
 "CMakeFiles/Pr2Meta.dir/EvolutivoGeneracional.cpp.obj" \
-"CMakeFiles/Pr2Meta.dir/TSP.cpp.obj"
+"CMakeFiles/Pr2Meta.dir/EvolutivoDiferencial.cpp.obj"
 
 # External object files for target Pr2Meta
 Pr2Meta_EXTERNAL_OBJECTS =
@@ -169,7 +169,7 @@ Pr2Meta.exe: CMakeFiles/Pr2Meta.dir/FileLoader.cpp.obj
 Pr2Meta.exe: CMakeFiles/Pr2Meta.dir/Poblacion.cpp.obj
 Pr2Meta.exe: CMakeFiles/Pr2Meta.dir/Individuo.cpp.obj
 Pr2Meta.exe: CMakeFiles/Pr2Meta.dir/EvolutivoGeneracional.cpp.obj
-Pr2Meta.exe: CMakeFiles/Pr2Meta.dir/TSP.cpp.obj
+Pr2Meta.exe: CMakeFiles/Pr2Meta.dir/EvolutivoDiferencial.cpp.obj
 Pr2Meta.exe: CMakeFiles/Pr2Meta.dir/build.make
 Pr2Meta.exe: CMakeFiles/Pr2Meta.dir/linkLibs.rsp
 Pr2Meta.exe: CMakeFiles/Pr2Meta.dir/objects1.rsp
