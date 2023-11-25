@@ -41,8 +41,6 @@ void Poblacion::inicializarPoblacion() {
     }
     for (int i = rango; i < loader->getTamPoblacion() ; i++) { // genero el resto de individuos con un greedy aleatorizado
         std::vector<int> individuoAleatorio;
-        if (i == 45)
-            std::cout << "";
         generaInidividuoGreedy(individuoAleatorio);
         this->individuos.push_back(new Individuo(individuoAleatorio)); // creo un individuo aleatorio y lo inserto al vector de individuos
 
@@ -174,7 +172,6 @@ void Poblacion::calcularElite() {
     for (int i = 0; i < loader->getNumElite(); i++) {
 
         this->elite[i] = ( new Individuo(*aux[i]) ); // elijo tantos elementos como elites tenga el algoritmo
-
         *log << "Elite " << i + 1 << " -> " << elite[i]->getCosteAsociado() << ", vector: " << std::endl;
         for (int j = 0; j < elite[i]->getVIndividuo().size(); ++j) {
             *log << elite[i]->getVIndividuo()[j] << " ";
@@ -220,7 +217,6 @@ void Poblacion::setIndividuos(const std::vector<Individuo *> &individuos) {
 
     calcularElite(); // calculo los nuevos élites
 
+
 }
-
-
 

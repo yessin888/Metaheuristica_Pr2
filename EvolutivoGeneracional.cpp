@@ -108,14 +108,14 @@ void EvolutivoGeneracional::executeEvolutivo() {
         primeraVez = false;
     }
 
-    std::cout << "costes de élites" << std::endl;
+    //std::cout << "costes de élites" << std::endl;
 
 
-    for (int i = 0; i < poblacion->getElite().size(); ++i) {
+  /*  for (int i = 0; i < poblacion->getElite().size(); ++i) {
         std::cout << poblacion->getElite()[i]->getCosteAsociado() << std::endl;
-    }
+    }*/
 
-    std::cout << "tiempo" << elapsed_seconds.count() << std::endl;
+    //std::cout << "tiempo" << elapsed_seconds.count() << std::endl;
     log << "Número de evaluaciones ejecutada: " << numEvaluaciones << ", tiempo transcurrido: " << elapsed_seconds.count() << " segundos" << std::endl;
 
 
@@ -177,7 +177,6 @@ void EvolutivoGeneracional::cruce(std::vector<Individuo*> &IndividuosACruzar) {
     Individuo* hijo2 = nullptr;
     for ( int i = 0; i < IndividuosACruzar.size() - 1; i+=2 ) { // itero de dos en dos
 
-        //todo considerar poblaciones de tamaño impar
         padre1 = IndividuosACruzar[i]; // inicializo el padre1
         padre2 = IndividuosACruzar[i+1]; // inicializo el padre2
         int random = (rand() % (10)); // aleatorio para simular 70%
@@ -334,13 +333,12 @@ void EvolutivoGeneracional::cruceMOC(Individuo *padre1, Individuo *padre2, Indiv
         log << "Posición de separación establecida en el MOC: " << posicionSeparacion << "\n" << std::endl;
     }
 
-    for (int j = posicionSeparacion; j < padre1->getVIndividuo().size(); j++) {
+    for (int j = posicionSeparacion; j < padre1->getVIndividuo().size() - 1; j++) {
         parteDerechaPadre1.push_back(padre1->getVIndividuo()[j]); // relleno los elementos correspondiente a la parte derecha del padre1
         parteDerechaPadre2.push_back(padre2->getVIndividuo()[j]); // relleno los elementos correspondiente a la parte derecha del padre2
     }
 
     while( i < hijo1->getVIndividuo().size() && fin ) {
-
         for(int j = 0; j < parteDerechaPadre2.size(); j++) { // recorro los elementos seleccionados
             if(parteDerechaPadre2[j] == hijo1->getVIndividuo()[i] ) { // compruebo si el elemento del hijo pertenece a la parte derecha del padre2
                 hijo1->getVIndividuo()[i] = parteDerechaPadre2[centinela]; // en caso de ser así sustituyo dicho elemento por su correspondiente

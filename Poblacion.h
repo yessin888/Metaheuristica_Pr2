@@ -8,9 +8,9 @@
 #include "Individuo.h"
 #include <queue>
 #include <fstream>
-
 class Poblacion {
 private:
+
     std::vector<Individuo*> individuos;
     std::vector<Individuo*> elite; // individuos con mejor fitness
     void inicializarPoblacion();

@@ -39,7 +39,7 @@ double Individuo::calcularCosteAsociado() {
     double coste = 0;
 
     for (int i = 0; i < loader->getTamDatos() - 1; i++) {
-        if( i == 10 )
+        if( i == 16 )
             std::cout << "";// todo ERRORRR!!!! meto en vIndividuo[10] un 287, fuera de rango
         coste += loader->getDistancias()[vIndividuo[i]][vIndividuo[i+1]];
     }

@@ -29,6 +29,9 @@ EvolutivoDiferencial::EvolutivoDiferencial(): poblacion() {
 EvolutivoDiferencial::~EvolutivoDiferencial() {
     delete poblacion;
     poblacion = nullptr;
+    if (log.is_open()){
+        log.close();
+    }
 }
 
 /*
